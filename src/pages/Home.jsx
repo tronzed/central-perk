@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <>
 
-           <Header/>
+            <Header />
             {/* Header part end*/}
             {/* banner part start*/}
             <section className="banner_part">
@@ -14,12 +14,13 @@ export default function Home() {
                         <div className="col-lg-6">
                             <div className="banner_text">
                                 <div className="banner_text_iner">
-                                    <h5>Expensive but the best</h5>
+                                    <h5>Where Coffee Meets Friendship</h5>
                                     <h1>Deliciousness jumping into the mouth</h1>
                                     <p>
-                                        Together creeping heaven upon third dominion be upon won't
-                                        darkness rule land behold it created good saw after she'd Our
-                                        set living. Signs midst dominion creepeth morning
+                                        The best brew in town, served with a side of laughter.
+                                        Each sip feels like a warm hug from an old friend,
+                                        each moment filled with stories, smiles, and the aroma of comfort.
+                                        At Central Perk, it’s never just coffee — it’s a feeling called Friends.
                                     </p>
                                     <div className="banner_btn">
                                         <div className="banner_btn_iner">
@@ -1097,8 +1098,8 @@ export default function Home() {
                 </div>
             </section>
             {/*::exclusive_item_part end::*/}
-           
-           <Footer/>
+
+            <Footer />
 
         </>
     );
