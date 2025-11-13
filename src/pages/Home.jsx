@@ -943,7 +943,7 @@ export default function Home() {
             </section>
             {/*::review_part end::*/}
             {/*::exclusive_item_part start::*/}
-            <section className="blog_item_section blog_section section_padding">
+            <section className="blog_item_section blog_section section_padding hide_me">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-5">

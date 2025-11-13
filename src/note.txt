@@ -4,11 +4,32 @@
 -----(Component)-----
 
 x Banner
-
 x Breadcrumb
-
 - Common box item
-
 - Tab
-
 - Feedback 
+
+-----(Pages)-----
+
+- Home
+- About
+- Menu
+- Chefs
+- Contact
+- Book table
+
+-----(Function frontend)-----
+
+- Menu order system
+- Book table
+- Add Feedback
+- Login 
+
+-----(Function backend)-----
+
+- Menu order system
+- Book table
+- Add Food items
+- Add Chef
+- show Feedback
+- Login 

@@ -5,3 +5,7 @@ body .container {
 .navbar-brand {
     max-width: 200px;
 }
+
+.hide_me {
+    display: none;
+}

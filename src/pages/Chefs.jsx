@@ -143,7 +143,7 @@ export default function Chefs() {
                     </section>
                     {/*::chefs_part end::*/}
                     {/* intro_video_bg start*/}
-                    <section className="intro_video_bg">
+                    <section className="intro_video_bg hide_me">
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-12">
