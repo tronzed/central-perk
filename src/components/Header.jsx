@@ -1,15 +1,40 @@
+import { Link, useLocation } from 'react-router-dom';
+import Banner from './Banner'
+import Breadcrumb from './Breadcrumb'
+import { useEffect, useState } from 'react';
+
 export default function Header() {
+
+
+    const [breadBox, setBreadBox] = useState();
+
+    const pageLoc = useLocation().pathname;
+
+    function bread() {
+
+        if (pageLoc == '/') {
+            setBreadBox(<Banner />);
+        } else {
+            setBreadBox(<Breadcrumb />);
+        }
+    }
+
+    useEffect(() => {
+        bread();
+    }, []);
+
+
     return (
         <>
-            <header className="main_menu home_menu">
+            <header className={`main_menu ${ pageLoc == "/" ? 'home_menu':'' }`}>
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-12">
                             <nav className="navbar navbar-expand-lg navbar-light">
-                                <a className="navbar-brand" href="index.html">
+                                <Link className="navbar-brand" to="/">
                                     {" "}
                                     <img src="img/logo_ms.png" alt="logo" />{" "}
-                                </a>
+                                </Link>
                                 <button
                                     className="navbar-toggler"
                                     type="button"
@@ -27,69 +52,45 @@ export default function Header() {
                                 >
                                     <ul className="navbar-nav">
                                         <li className="nav-item">
-                                            <a className="nav-link" href="index.html">
+                                            <Link className="nav-link" to="/">
                                                 Home
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="about.html">
+                                            <Link className="nav-link" to="/about">
                                                 About
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="food_menu.html">
+                                            <Link className="nav-link" to="/menu">
                                                 Menu
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="chefs.html">
+                                            <Link className="nav-link" to="/chefs">
                                                 Chefs
-                                            </a>
-                                        </li>
-                                        <li className="nav-item dropdown">
-                                            <a
-                                                className="nav-link dropdown-toggle"
-                                                href="blog.html"
-                                                id="navbarDropdown"
-                                                role="button"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                Blog
-                                            </a>
-                                            <div
-                                                className="dropdown-menu"
-                                                aria-labelledby="navbarDropdown"
-                                            >
-                                                <a className="dropdown-item" href="blog.html">
-                                                    Blog
-                                                </a>
-                                                <a className="dropdown-item" href="single-blog.html">
-                                                    Single blog
-                                                </a>
-                                                <a className="dropdown-item" href="elements.html">
-                                                    Elements
-                                                </a>
-                                            </div>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="contact.html">
+                                            <Link className="nav-link" to="/contact">
                                                 Contact
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
                                 <div className="menu_btn">
-                                    <a href="#" className="btn_1 d-none d-sm-block">
+                                    <Link to="book" className="btn_1 d-none d-sm-block">
                                         book a tabel
-                                    </a>
+                                    </Link>
                                 </div>
                             </nav>
                         </div>
                     </div>
                 </div>
             </header>
+
+            {breadBox}
+
         </>
     );
 }
