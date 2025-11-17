@@ -1,13 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { dataBox, addData } from '../utils/function'
+import { getMenuData, addData } from '../utils/function'
 
 export default function About() {
 
+
+    const [menuData, setMenuData] = useState();
+
+
     useEffect(() => {
-        dataBox();
+
+        (async () => {
+
+            const data = await getMenuData();
+
+            setMenuData(data);
+
+        })();
+
     }, []);
 
 
@@ -16,11 +28,8 @@ export default function About() {
 
             <Header />
 
-            <div className="container">
-
-            </div>
-
             <>
+
                 <section className="food_menu gray_bg">
                     <div className="container">
                         <div className="row justify-content-between">
@@ -85,6 +94,7 @@ export default function About() {
                                     </a>
                                 </div>
                             </div>
+
                             <div className="col-lg-12">
                                 <div className="tab-content" id="myTabContent">
                                     <div
@@ -93,87 +103,36 @@ export default function About() {
                                         role="tabpanel"
                                         aria-labelledby="Special-tab"
                                     >
-                                        <div className="row">
-                                            <div className="col-sm-6 col-lg-6">
-                                                <div className="single_food_item media">
-                                                    <img
-                                                        src="img/food_menu/single_food_1.png"
-                                                        className="mr-3"
-                                                        alt="..."
-                                                    />
-                                                    <div className="media-body align-self-center">
-                                                        <h3>Pork Sandwich</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
-                                                        <h5>$40.00</h5>
 
-                                                        <button onClick={addData} className="add_btn">Add</button>
-                                                    </div>
-                                                </div>
-                                                <div className="single_food_item media">
-                                                    <img
-                                                        src="img/food_menu/single_food_2.png"
-                                                        className="mr-3"
-                                                        alt="..."
-                                                    />
-                                                    <div className="media-body align-self-center">
-                                                        <h3>Roasted Marrow</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
-                                                        <h5>$40.00</h5>
-                                                    </div>
-                                                </div>
-                                                <div className="single_food_item media">
-                                                    <img
-                                                        src="img/food_menu/single_food_3.png"
-                                                        className="mr-3"
-                                                        alt="..."
-                                                    />
-                                                    <div className="media-body align-self-center">
-                                                        <h3>Summer Cooking</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
-                                                        <h5>$40.00</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6 col-lg-6">
-                                                <div className="single_food_item media">
-                                                    <img
-                                                        src="img/food_menu/single_food_4.png"
-                                                        className="mr-3"
-                                                        alt="..."
-                                                    />
-                                                    <div className="media-body align-self-center">
-                                                        <h3>Easter Delight</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
-                                                        <h5>$40.00</h5>
-                                                    </div>
-                                                </div>
-                                                <div className="single_food_item media">
-                                                    <img
-                                                        src="img/food_menu/single_food_5.png"
-                                                        className="mr-3"
-                                                        alt="..."
-                                                    />
-                                                    <div className="media-body align-self-center">
-                                                        <h3>Tiener Schnitze</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
-                                                        <h5>$40.00</h5>
-                                                    </div>
-                                                </div>
-                                                <div className="single_food_item media">
-                                                    <img
-                                                        src="img/food_menu/single_food_6.png"
-                                                        className="mr-3"
-                                                        alt="..."
-                                                    />
-                                                    <div className="media-body align-self-center">
-                                                        <h3>Chicken Roast</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
-                                                        <h5>$40.00</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div className="row">
+
+                                            {
+                                                menuData?.map((value, key) => (
+                                                    <>
+
+
+                                                        <div className="col-sm-6">
+                                                            <div className="single_food_item media">
+                                                                <img
+                                                                    src={`img/food_menu/single_food_${key+1}.png`}
+                                                                    className="mr-3"
+                                                                    alt="..."
+                                                                />
+                                                                <div className="media-body align-self-center">
+                                                                    <h3>{value?.name}</h3>
+                                                                    <h5>${value?.price}</h5>
+                                                                    <button onClick={()=>{addData(value.fbId)}} className="add_btn">Add</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </>
+                                                ))
+                                            }
+
                                         </div>
                                     </div>
+
                                     <div
                                         className="tab-pane fade single-member"
                                         id="Breakfast"
@@ -190,7 +149,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Easter Delight</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -202,7 +161,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Tiener Schnitze</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -214,7 +173,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Chicken Roast</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -228,7 +187,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Pork Sandwich</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -240,7 +199,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Roasted Marrow</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -252,7 +211,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Summer Cooking</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -275,7 +234,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Pork Sandwich</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -287,7 +246,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Roasted Marrow</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -299,7 +258,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Summer Cooking</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -313,7 +272,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Easter Delight</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -325,7 +284,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Tiener Schnitze</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -337,7 +296,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Chicken Roast</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -360,7 +319,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Easter Delight</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -372,7 +331,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Tiener Schnitze</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -384,7 +343,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Chicken Roast</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -398,7 +357,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Pork Sandwich</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -410,7 +369,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Roasted Marrow</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -422,7 +381,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Summer Cooking</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -445,7 +404,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Pork Sandwich</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -457,7 +416,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Roasted Marrow</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -469,7 +428,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Summer Cooking</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -483,7 +442,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Easter Delight</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -495,7 +454,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Tiener Schnitze</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>
@@ -507,7 +466,7 @@ export default function About() {
                                                     />
                                                     <div className="media-body align-self-center">
                                                         <h3>Chicken Roast</h3>
-                                                        <p>They're wherein heaven seed hath nothing</p>
+
                                                         <h5>$40.00</h5>
                                                     </div>
                                                 </div>

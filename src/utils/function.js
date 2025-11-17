@@ -2,14 +2,19 @@
 
 const firebaseURL = import.meta.env.VITE_FIREBASE_DB_URL;
 
-export const dataBox = async () => {
+export const getMenuData = async () => {
     const res = await fetch(firebaseURL);
     const data = await res.json();
-    console.log(data);
+
+    const data2 = Object.entries(data?.menu?.items).map(([key,value])=>({
+        fbId:key,
+        ...value
+    }))
+
+    return data2;
 }
 
 export const addData = () => {
-
     const data = { nameBox: 'Tanuj is Walter' }
 
     fetch(firebaseURL, {
@@ -19,6 +24,4 @@ export const addData = () => {
     }).then(() => {
         console.log('added boss');
     });
-
-
 }

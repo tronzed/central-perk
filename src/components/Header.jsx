@@ -26,7 +26,7 @@ export default function Header() {
 
     return (
         <>
-            <header className={`main_menu ${ pageLoc == "/" ? 'home_menu':'' }`}>
+            <header className={`main_menu ${pageLoc == "/" ? 'home_menu' : ''}`}>
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-12">
@@ -78,11 +78,25 @@ export default function Header() {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className="menu_btn">
-                                    <Link to="book" className="btn_1 d-none d-sm-block">
-                                        book a tabel
-                                    </Link>
+
+
+                                <div className='menu_side_box'>
+                                    <div className='cart_box'>
+                                        <Link to="book" className="cart_btn">
+                                            <i className='ti-shopping-cart'></i>
+                                            Cart
+                                        </Link>
+                                    </div>
+                                    <div className="menu_btn_box">
+                                        <Link to="book" className="btn_1 d-none d-sm-block">
+                                            <i className='ti-pencil-alt'></i>
+                                            Book A Tabel
+                                        </Link>
+                                    </div>
                                 </div>
+
+
+
                             </nav>
                         </div>
                     </div>
