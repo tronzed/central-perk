@@ -69,8 +69,6 @@ export default function Footer() {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Email Address"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Email Address'"
                                             />
                                             <div className="input-group-append">
                                                 <button className="btn" type="button">

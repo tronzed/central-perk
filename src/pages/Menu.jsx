@@ -1,11 +1,47 @@
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 export default function About() {
+
+
+    const dataBox = async () => {
+        const res = await fetch('https://centralperk-81a87-default-rtdb.firebaseio.com/.json');
+        const data = await res.json();
+        console.log(data);
+    }
+
+    const addData = () => {
+
+        const data = { nameBox:'Tanuj is Walter' }
+
+        fetch('https://centralperk-81a87-default-rtdb.firebaseio.com/.json', {
+            method: 'POST',
+            headers: { "Content-Type": 'application/json' },
+            body: JSON.stringify(data)
+        }).then(()=>{
+            console.log('added boss');
+        });
+
+
+    }
+
+
+    useEffect(() => {
+        dataBox();
+    }, []);
+
+
     return (
         <>
 
             <Header />
+
+            <div className="container">
+
+
+
+            </div>
 
             <>
                 <section className="food_menu gray_bg">
@@ -92,6 +128,8 @@ export default function About() {
                                                         <h3>Pork Sandwich</h3>
                                                         <p>They're wherein heaven seed hath nothing</p>
                                                         <h5>$40.00</h5>
+
+                                                        <button onClick={addData} className="add_btn">Add</button>
                                                     </div>
                                                 </div>
                                                 <div className="single_food_item media">

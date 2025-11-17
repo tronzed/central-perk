@@ -9,3 +9,10 @@ body .container {
 .hide_me {
     display: none;
 }
+
+.add_btn {
+    padding: 4px 22px;
+    border-radius: 20px;
+    border: 1px solid #8b8b8b;
+    background-color: #fff;
+}
