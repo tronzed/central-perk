@@ -3,10 +3,10 @@ import About from "./pages/About"
 import Menu from "./pages/Menu"
 import Chefs from "./pages/Chefs"
 import Contact from "./pages/Contact"
-import Book from "./pages/Book"
 
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import BookTable from "./pages/BookTable"
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/chefs" element={<Chefs />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/book" element={<Book />} />
+          <Route path="/book" element={<BookTable />} />
         </Routes>
       </BrowserRouter>
       

@@ -88,13 +88,12 @@ export default function Header() {
                                         </Link>
                                     </div>
                                     <div className="menu_btn_box">
-                                        <Link to="book" className="btn_1 d-none d-sm-block">
+                                        <Link to="/book" className="btn_1 d-none d-sm-block">
                                             <i className='ti-pencil-alt'></i>
                                             Book A Tabel
                                         </Link>
                                     </div>
                                 </div>
-
 
 
                             </nav>

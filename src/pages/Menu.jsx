@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getMenuData, addData } from '../utils/function'
+import { getMenuData, addCart } from '../utils/function'
 
 export default function About() {
 
@@ -114,14 +114,14 @@ export default function About() {
                                                         <div className="col-sm-6">
                                                             <div className="single_food_item media">
                                                                 <img
-                                                                    src={`img/food_menu/single_food_${key+1}.png`}
+                                                                    src={`img/food_menu/single_food_${key + 1}.png`}
                                                                     className="mr-3"
                                                                     alt="..."
                                                                 />
                                                                 <div className="media-body align-self-center">
                                                                     <h3>{value?.name}</h3>
                                                                     <h5>${value?.price}</h5>
-                                                                    <button onClick={()=>{addData(value.fbId)}} className="add_btn">Add</button>
+                                                                    <button onClick={() => { addCart(value.fbId) }} className="add_btn">Add</button>
                                                                 </div>
                                                             </div>
                                                         </div>
