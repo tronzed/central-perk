@@ -1,10 +1,29 @@
+import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
+import { book_table } from '../utils/function'
+
 export default function BookTable() {
+
+
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
+    const [peopleNo, setPeopleNo] = useState();
+
+
+    const submitForm = (e) => {
+
+        e.preventDefault();
+
+        const data = { name: name, email: email, phone: phone, peopleNo: peopleNo }
+        book_table(data);
+    }
+
+
     return (
         <>
-
             <Header />
 
             <>
@@ -17,22 +36,18 @@ export default function BookTable() {
                                     <h2 className="contact-title">Book Table</h2>
                                     <form
                                         className="form-contact contact_form"
-                                        action="contact_process.php"
                                         method="post"
-                                        id="contactForm"
-                                        noValidate="novalidate"
+                                        onSubmit={submitForm}
                                     >
                                         <div className="row">
                                             <div className="col-sm-6">
                                                 <div className="form-group">
                                                     <input
                                                         className="form-control"
-                                                        name="name"
-                                                        id="name"
                                                         type="text"
-                                                        onfocus="this.placeholder = ''"
-                                                        onblur="this.placeholder = 'Enter your name'"
                                                         placeholder="Enter your name"
+                                                        value={name}
+                                                        onChange={(e) => { setName(e.target.value) }}
                                                     />
                                                 </div>
                                             </div>
@@ -41,11 +56,10 @@ export default function BookTable() {
                                                     <input
                                                         className="form-control"
                                                         name="email"
-                                                        id="email"
                                                         type="email"
-                                                        onfocus="this.placeholder = ''"
-                                                        onblur="this.placeholder = 'Enter email address'"
                                                         placeholder="Enter email address"
+                                                        value={email}
+                                                        onChange={(e) => { setEmail(e.target.value) }}
                                                     />
                                                 </div>
                                             </div>
@@ -54,11 +68,10 @@ export default function BookTable() {
                                                     <input
                                                         className="form-control"
                                                         name="subject"
-                                                        id="subject"
                                                         type="text"
-                                                        onfocus="this.placeholder = ''"
-                                                        onblur="this.placeholder = 'Enter Subject'"
                                                         placeholder="Phone No"
+                                                        value={phone}
+                                                        onChange={(e) => { setPhone(e.target.value) }}
                                                     />
                                                 </div>
                                             </div>
@@ -67,14 +80,12 @@ export default function BookTable() {
 
                                                     <input
                                                         className="form-control"
-                                                        name="subject"
-                                                        id="subject"
                                                         type="number"
-                                                        onfocus="this.placeholder = ''"
-                                                        onblur="this.placeholder = 'Enter Subject'"
                                                         placeholder="No of people"
+                                                        value={peopleNo}
+                                                        onChange={(e) => { setPeopleNo(e.target.value) }}
                                                     />
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
