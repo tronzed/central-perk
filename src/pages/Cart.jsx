@@ -2,30 +2,35 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import {getCartData} from '../utils/function'
+import { getCartData, getMenuData } from '../utils/function'
 
 
 export default function Cart() {
 
 
-    const [cartData,setCartData] = useState(); 
+    // const [cartData, setCartData] = useState();
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
 
-        ( async ()=>{
+        (async () => {
 
-            const data = await getCartData(); 
-            
-            console.log(data,'----data------');
+            const cartData = await getCartData();
 
-            setCartData(data);
+            const menuData = await getMenuData();
+
+            const cartItems = menuData.filter((items) => cartData.includes(items.fbId));
+
+
+            console.log(cartData, '------cartData-------');
+            console.log(menuData, '------menuData-------');
+            console.log(cartItems, '------cartItems-------');
 
         })();
 
 
-    },[]);
+    }, []);
 
     return (
         <>
