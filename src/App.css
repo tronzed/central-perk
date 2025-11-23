@@ -31,3 +31,7 @@ body .container {
     display: inline-block;
     margin-right: 8px;
 }
+
+.table {
+    border: 1px solid #dbdbdb;
+}

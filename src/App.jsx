@@ -7,6 +7,7 @@ import Contact from "./pages/Contact"
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import BookTable from "./pages/BookTable"
+import Cart from "./pages/Cart"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/chefs" element={<Chefs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<BookTable />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
       

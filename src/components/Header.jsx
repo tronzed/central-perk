@@ -82,7 +82,7 @@ export default function Header() {
 
                                 <div className='menu_side_box'>
                                     <div className='cart_box'>
-                                        <Link to="/book" className="cart_btn">
+                                        <Link to="/cart" className="cart_btn">
                                             <i className='ti-shopping-cart'></i>
                                             Cart
                                         </Link>
