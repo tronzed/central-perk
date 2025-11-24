@@ -2,39 +2,29 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getCartData, getMenuData } from '../utils/function'
+import { getCartItmes } from '../utils/function'
 
 
 export default function Cart() {
 
 
-    // const [cartData, setCartData] = useState();
+    const [cartData, setCartData] = useState();
 
 
     useEffect(() => {
 
-
         (async () => {
-
-            const cartData = await getCartData();
-
-            const menuData = await getMenuData();
-
-            const cartItems = menuData.filter((items) => cartData.includes(items.fbId));
-
-
-            console.log(cartData, '------cartData-------');
-            console.log(menuData, '------menuData-------');
-            console.log(cartItems, '------cartItems-------');
-
+            const data = await getCartItmes();
+            setCartData(data);
         })();
-
 
     }, []);
 
     return (
         <>
             <Header />
+
+            {console.log(cartData, '=======cartData=====')}
 
             <>
                 <>
@@ -56,75 +46,45 @@ export default function Cart() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div className="d-flex align-items-center">
-                                                        <img
-                                                            className="img-fluid me-5 rounded-circle"
-                                                            alt=""
-                                                            src="./assets/images/img_2.jpg"
-                                                            style={{ width: 80, height: 80 }}
-                                                        />
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <p className="mb-0 mt-4">Farmhouse Pizza</p>
-                                                </td>
-                                                <td>
-                                                    <p className="mb-0 mt-4">1$</p>
-                                                </td>
-                                                <td>
-                                                    <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                                        <i className="fa fa-times text-danger" />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div className="d-flex align-items-center">
-                                                        <img
-                                                            className="img-fluid me-5 rounded-circle"
-                                                            alt=""
-                                                            src="./assets/images/img_4.jpg"
-                                                            style={{ width: 80, height: 80 }}
-                                                        />
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <p className="mb-0 mt-4">BBQ Chicken Pizza</p>
-                                                </td>
-                                                <td>
-                                                    <p className="mb-0 mt-4">3$</p>
-                                                </td>
-                                                <td>
-                                                    <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                                        <i className="fa fa-times text-danger" />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div className="d-flex align-items-center">
-                                                        <img
-                                                            className="img-fluid me-5 rounded-circle"
-                                                            alt=""
-                                                            src="./assets/images/img_2.jpg"
-                                                            style={{ width: 80, height: 80 }}
-                                                        />
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <p className="mb-0 mt-4">Farmhouse Pizza</p>
-                                                </td>
-                                                <td>
-                                                    <p className="mb-0 mt-4">1$</p>
-                                                </td>
-                                                <td>
-                                                    <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                                        <i className="fa fa-times text-danger" />
-                                                    </button>
-                                                </td>
-                                            </tr>
+
+
+                                            {
+
+                                                cartData?.map((item, key) => (
+
+                                                    <>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <div className="d-flex align-items-center">
+                                                                    <img
+                                                                        className="img-fluid me-5 rounded-circle"
+                                                                        alt=""
+                                                                        src="./assets/images/img_2.jpg"
+                                                                        style={{ width: 80, height: 80 }}
+                                                                    />
+                                                                </div>
+                                                            </th>
+                                                            <td>
+                                                                <p className="mb-0 mt-4">{item?.name}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="mb-0 mt-4">{item?.price}$</p>
+                                                            </td>
+                                                            <td>
+                                                                <button className="btn btn-md rounded-circle bg-light border mt-4">
+                                                                    <i className="fa fa-times text-danger" />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+
+                                                ))
+
+                                            }
+
+
+
+
                                         </tbody>
                                     </table>
 
@@ -139,7 +99,7 @@ export default function Cart() {
                                             </h1>
                                             <div className="d-flex justify-content-between mb-4">
                                                 <h5 className="mb-0 me-4">Subtotal:</h5>
-                                                <p className="mb-0">$23</p>
+                                                <p className="mb-0">${cartData.total}</p>
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <h5 className="mb-0 me-4">Shipping</h5>
@@ -150,7 +110,7 @@ export default function Cart() {
                                         </div>
                                         <div className="p-4 py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                             <h5 className="mb-0 ps-4 me-4">Total</h5>
-                                            <p className="mb-0 pe-4">$26</p>
+                                            <p className="mb-0 pe-4">${cartData.total + 3}</p>
                                         </div>
                                         <a
                                             className="btn_4 w-100 text-center"

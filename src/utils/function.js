@@ -62,3 +62,23 @@ export const getCartData = async () => {
 // Get menu end
 
 
+// Get cart items start
+export const getCartItmes = async () => {
+    const cartData = await getCartData();
+    const menuData = await getMenuData();
+
+    const cartItems = menuData.filter((menuItem) => cartData.some((cartItem) => menuItem.fbId === cartItem.item));
+
+    const price = cartItems.map((itme) => itme.price);
+
+    let total = 0;
+
+    for (let a = 0; a < price.length; a++) {
+        total += price[a];
+    }
+
+    cartItems.total = total
+
+    return cartItems;
+}
+// Get cart items end
