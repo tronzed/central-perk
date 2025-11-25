@@ -3,6 +3,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import { getCartItmes } from '../utils/function'
+import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 
 export default function Cart() {
@@ -10,12 +12,14 @@ export default function Cart() {
 
     const [cartData, setCartData] = useState();
 
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
 
         (async () => {
             const data = await getCartItmes();
             setCartData(data);
+            setLoader(false)
         })();
 
     }, []);
@@ -24,7 +28,7 @@ export default function Cart() {
         <>
             <Header />
 
-            {console.log(cartData, '=======cartData=====')}
+            <Loader status={loader} />
 
             <>
                 <>
@@ -59,7 +63,7 @@ export default function Cart() {
                                                                     <img
                                                                         className="img-fluid me-5 rounded-circle"
                                                                         alt=""
-                                                                        src="./assets/images/img_2.jpg"
+                                                                        src="img/food_menu/single_food_1.png"
                                                                         style={{ width: 80, height: 80 }}
                                                                     />
                                                                 </div>
@@ -99,7 +103,7 @@ export default function Cart() {
                                             </h1>
                                             <div className="d-flex justify-content-between mb-4">
                                                 <h5 className="mb-0 me-4">Subtotal:</h5>
-                                                <p className="mb-0">${cartData.total}</p>
+                                                <p className="mb-0">${cartData?.total}</p>
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <h5 className="mb-0 me-4">Shipping</h5>
@@ -110,16 +114,16 @@ export default function Cart() {
                                         </div>
                                         <div className="p-4 py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                             <h5 className="mb-0 ps-4 me-4">Total</h5>
-                                            <p className="mb-0 pe-4">${cartData.total + 3}</p>
+                                            <p className="mb-0 pe-4">${cartData?.total + 3}</p>
                                         </div>
-                                        <a
+                                        <Link
                                             className="btn_4 w-100 text-center"
                                             type="button"
-                                            href="/checkout"
+                                            to="/checkout"
                                             data-discover="true"
                                         >
                                             Proceed Checkout
-                                        </a>
+                                        </Link>
                                     </div>
 
 

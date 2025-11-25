@@ -8,6 +8,7 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import BookTable from "./pages/BookTable"
 import Cart from "./pages/Cart"
+import Checkout from "./pages/Checkout"
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<BookTable />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
       

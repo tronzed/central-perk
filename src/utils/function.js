@@ -82,3 +82,20 @@ export const getCartItmes = async () => {
     return cartItems;
 }
 // Get cart items end
+
+
+
+// Get menu start
+export const getCartCount = async () => {
+
+    const res = await fetch(firebaseURL + "cart" + '.json');
+    const data = await res.json();
+
+    const data2 = Object.values(data);
+    
+    const data3 = data2.length;
+    
+    return data3;
+
+}
+// Get menu end

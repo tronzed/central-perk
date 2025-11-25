@@ -3,10 +3,14 @@ import Banner from './Banner'
 import Breadcrumb from './Breadcrumb'
 import { useEffect, useState } from 'react';
 
+import { getCartCount } from '../utils/function'
+
 export default function Header() {
 
 
     const [breadBox, setBreadBox] = useState();
+
+    const [cartCount, setCartCount] = useState(0);
 
     const pageLoc = useLocation().pathname;
 
@@ -19,7 +23,17 @@ export default function Header() {
         }
     }
 
+
     useEffect(() => {
+
+        (async () => {
+
+            const data = await getCartCount();
+            setCartCount(data);
+
+        })();
+
+
         bread();
     }, []);
 
@@ -84,7 +98,9 @@ export default function Header() {
                                     <div className='cart_box'>
                                         <Link to="/cart" className="cart_btn">
                                             <i className='ti-shopping-cart'></i>
-                                            Cart
+                                            {cartCount !== 0 && (
+                                                <span className='count_box'> {cartCount}</span>
+                                            )}
                                         </Link>
                                     </div>
                                     <div className="menu_btn_box">
@@ -94,7 +110,6 @@ export default function Header() {
                                         </Link>
                                     </div>
                                 </div>
-
 
                             </nav>
                         </div>
