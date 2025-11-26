@@ -40,7 +40,7 @@ export const book_table = (value) => {
 
     fetch(firebaseURL + 'tableBook/.json', {
         method: 'POST',
-        headersL: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     }).then(() => {
         console.log('table add')
@@ -55,7 +55,16 @@ export const getCartData = async () => {
     const res = await fetch(firebaseURL + "cart" + '.json');
     const data = await res.json();
 
-    const data2 = Object.values(data);
+    if (!data) {
+        return [];
+    }
+
+    const data2 = Object?.values(data);
+
+
+    
+
+
     return data2;
 
 }
@@ -91,11 +100,53 @@ export const getCartCount = async () => {
     const res = await fetch(firebaseURL + "cart" + '.json');
     const data = await res.json();
 
-    const data2 = Object.values(data);
-    
+    if (!data) {
+        return [];
+    }
+
+    const data2 = Object?.values(data);
     const data3 = data2.length;
-    
     return data3;
 
 }
 // Get menu end
+
+
+
+// place order start 
+export const placeOrder = (order) => {
+
+    const data = { order }
+
+    fetch(firebaseURL + "order" + '.json', {
+        method: "POST",
+        headers: { 'Content-Type': "application/json" },
+        body: JSON.stringify(data)
+    }).then(() => {
+        console.log("added");
+    });
+
+
+    fetch(firebaseURL + "cart" + '.json', {
+        method: 'DELETE'
+    }).then(() => {
+        console.log('deleted');
+    });
+
+}
+// place order end 
+
+
+// delete cart item start
+
+export const deleteCartItem = (val) => {
+
+    fetch(firebaseURL + val + '.json', {
+        method: "DELETE"
+    }).then(() => {
+        console.log('item deleted');
+    });
+
+}
+
+// delete cart item end
