@@ -19,6 +19,21 @@ export default function Cart() {
         nav('/checkout')
     }
 
+
+    const deleteCartData = async (val) => {
+        
+        setLoader(true);
+        
+        await deleteCartItem(val);
+
+        const data = await getCartItmes();
+
+        setCartData(data);
+        setLoader(false)
+
+    }
+
+
     useEffect(() => {
         (async () => {
             const data = await getCartItmes();
@@ -31,7 +46,7 @@ export default function Cart() {
         <>
             <Header />
 
-            {console.log(cartData,'-----cartData------')}
+            {/* {console.log(cartData, '-----cartData------')} */}
 
             <Loader status={loader} />
 
@@ -82,7 +97,7 @@ export default function Cart() {
                                                                         <p className="mb-0 mt-4">{item?.price}$</p>
                                                                     </td>
                                                                     <td>
-                                                                        <button className="btn btn-md rounded-circle bg-light border mt-4">
+                                                                        <button onClick={() => { deleteCartData(item.cartId); }} className="btn btn-md rounded-circle bg-light border mt-4">
                                                                             <i className="fa fa-times text-danger" />
                                                                         </button>
                                                                     </td>
@@ -120,12 +135,12 @@ export default function Cart() {
                                                 </div>
                                                 <div className="p-4 py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                                     <h5 className="mb-0 ps-4 me-4">Total</h5>
-                                                    <p className="mb-0 pe-4">${cartData?.total + 3}</p>
+                                                    {/* <p className="mb-0 pe-4">${cartData?.total + 3}</p> */}
                                                 </div>
                                                 <button
                                                     className="btn_4 w-100 text-center"
                                                     type="button"
-                                                    onClick={() => { orderData(cartData) }}
+                                                    onClick={() => { orderData(cartData); }}
                                                 >
                                                     Proceed Checkout
                                                 </button>
@@ -140,8 +155,6 @@ export default function Cart() {
                                 (<>
                                     empty cart
                                 </>)}
-
-
 
 
 

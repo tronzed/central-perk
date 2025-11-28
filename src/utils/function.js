@@ -59,11 +59,10 @@ export const getCartData = async () => {
         return [];
     }
 
-    const data2 = Object?.values(data);
-
-
-    
-
+    const data2 = Object.entries(data).map(([key, value]) => ({
+        cartId: key,
+        ...value
+    }))
 
     return data2;
 
@@ -73,10 +72,19 @@ export const getCartData = async () => {
 
 // Get cart items start
 export const getCartItmes = async () => {
+
     const cartData = await getCartData();
     const menuData = await getMenuData();
 
+
+
     const cartItems = menuData.filter((menuItem) => cartData.some((cartItem) => menuItem.fbId === cartItem.item));
+
+    for (let i = 0; i < cartItems.length; i++) {
+        cartItems[i].cartId = cartData[i].cartId
+    }
+
+
 
     const price = cartItems.map((itme) => itme.price);
 
@@ -86,12 +94,11 @@ export const getCartItmes = async () => {
         total += price[a];
     }
 
-    cartItems.total = total
+    // cartItems.total = total
 
     return cartItems;
 }
 // Get cart items end
-
 
 
 // Get menu start
@@ -139,9 +146,9 @@ export const placeOrder = (order) => {
 
 // delete cart item start
 
-export const deleteCartItem = (val) => {
+export const deleteCartItem = async (val) => {
 
-    fetch(firebaseURL + val + '.json', {
+    await fetch(firebaseURL + 'cart/' + val + '.json', {
         method: "DELETE"
     }).then(() => {
         console.log('item deleted');

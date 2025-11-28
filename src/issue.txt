@@ -1,0 +1,6 @@
+
+- refresh page
+
+- delete item
+
+- loader on all pages
