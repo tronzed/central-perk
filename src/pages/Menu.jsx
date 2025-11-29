@@ -2,22 +2,42 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getMenuData, addCart } from '../utils/function'
+import { getMenuData, addCart, checkGetCart, getCartData } from '../utils/function'
+import Loader from "../components/Loader";
 
 export default function About() {
 
 
     const [menuData, setMenuData] = useState();
+    const [loader, setLoader] = useState(true);
+    const [cartData, setCartData] = useState([]);
+
+    const getMenu = async () => {
+        const data = await getMenuData();
+        setMenuData(data);
+        setLoader(false);
+    };
+
+    const checkBoxx = (val) => {
+
+        const data = cartData.some(item => item.item == val);
+
+        return data;
+
+    }
 
 
     useEffect(() => {
 
         (async () => {
-
             const data = await getMenuData();
-
             setMenuData(data);
+            setLoader(false);
+        })();
 
+        (async () => {
+            const data = await getCartData();
+            setCartData(data);
         })();
 
     }, []);
@@ -28,8 +48,11 @@ export default function About() {
 
             <Header />
 
-            <>
+            <Loader status={loader} />
 
+            {console.log(cartData, '======2===cartData====2=====')}
+
+            <>
                 <section className="food_menu gray_bg">
                     <div className="container">
                         <div className="row justify-content-between">
@@ -110,7 +133,6 @@ export default function About() {
                                                 menuData?.map((value, key) => (
                                                     <>
 
-
                                                         <div className="col-sm-6">
                                                             <div className="single_food_item media">
                                                                 <img
@@ -121,7 +143,9 @@ export default function About() {
                                                                 <div className="media-body align-self-center">
                                                                     <h3>{value?.name}</h3>
                                                                     <h5>${value?.price}</h5>
-                                                                    <button onClick={() => { addCart(value.fbId) }} className="add_btn">Add</button>
+                                                                    <button onClick={() => { addCart(value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
+                                                                        {checkBoxx(value.fbId) === true ? 'in cart' : 'Add'}
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>

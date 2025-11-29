@@ -76,15 +76,11 @@ export const getCartItmes = async () => {
     const cartData = await getCartData();
     const menuData = await getMenuData();
 
-
-
     const cartItems = menuData.filter((menuItem) => cartData.some((cartItem) => menuItem.fbId === cartItem.item));
 
     for (let i = 0; i < cartItems.length; i++) {
         cartItems[i].cartId = cartData[i].cartId
     }
-
-
 
     const price = cartItems.map((itme) => itme.price);
 
@@ -94,7 +90,7 @@ export const getCartItmes = async () => {
         total += price[a];
     }
 
-    // cartItems.total = total
+    cartItems.total = total
 
     return cartItems;
 }
@@ -157,3 +153,14 @@ export const deleteCartItem = async (val) => {
 }
 
 // delete cart item end
+
+
+// check if in cart start
+export const checkGetCart = async (val) => {
+
+    const cartData = await getCartData();
+
+    return cartData;
+}
+
+// check if in cart end
