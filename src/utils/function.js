@@ -155,12 +155,3 @@ export const deleteCartItem = async (val) => {
 // delete cart item end
 
 
-// check if in cart start
-export const checkGetCart = async (val) => {
-
-    const cartData = await getCartData();
-
-    return cartData;
-}
-
-// check if in cart end

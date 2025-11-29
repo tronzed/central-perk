@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getMenuData, addCart, checkGetCart, getCartData } from '../utils/function'
+import { getMenuData, addCart, getCartData } from '../utils/function'
 import Loader from "../components/Loader";
 
 export default function About() {
@@ -16,14 +16,15 @@ export default function About() {
         const data = await getMenuData();
         setMenuData(data);
         setLoader(false);
+
+        const data2 = await getCartData();
+        setCartData(data2);
+
     };
 
-    const checkBoxx = (val) => {
-
+    const checkCartBox = (val) => {
         const data = cartData.some(item => item.item == val);
-
         return data;
-
     }
 
 
@@ -132,7 +133,6 @@ export default function About() {
                                             {
                                                 menuData?.map((value, key) => (
                                                     <>
-
                                                         <div className="col-sm-6">
                                                             <div className="single_food_item media">
                                                                 <img
@@ -144,7 +144,7 @@ export default function About() {
                                                                     <h3>{value?.name}</h3>
                                                                     <h5>${value?.price}</h5>
                                                                     <button onClick={() => { addCart(value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
-                                                                        {checkBoxx(value.fbId) === true ? 'in cart' : 'Add'}
+                                                                        {checkCartBox(value.fbId) === true ? 'In Cart' : 'Add'}
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -155,6 +155,8 @@ export default function About() {
                                             }
 
                                         </div>
+
+
                                     </div>
 
                                     <div
@@ -502,29 +504,7 @@ export default function About() {
                         </div>
                     </div>
                 </section>
-                {/* food_menu part end*/}
-                {/*::chefs_part end::*/}
-                {/* intro_video_bg start*/}
-                <section className="intro_video_bg hide_me">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="intro_video_iner text-center">
-                                    <h2>Expect The Best</h2>
-                                    <div className="intro_video_icon">
-                                        <a
-                                            id="play-video_1"
-                                            className="video-play-button popup-youtube"
-                                            href="https://www.youtube.com/watch?v=pBFQdxA-apI"
-                                        >
-                                            <span className="ti-control-play" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
             </>
 
 
