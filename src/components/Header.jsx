@@ -1,12 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
 import Banner from './Banner'
 import Breadcrumb from './Breadcrumb'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { getCartCount } from '../utils/function'
+import { CartContext } from '../context/CartContext';
+
 
 export default function Header() {
 
+    const { box } = useContext(CartContext);
 
     const [breadBox, setBreadBox] = useState();
 
@@ -23,7 +26,6 @@ export default function Header() {
         }
     }
 
-
     useEffect(() => {
 
         (async () => {
@@ -33,10 +35,8 @@ export default function Header() {
 
         })();
 
-
         bread();
     }, []);
-
 
     return (
         <>
@@ -46,7 +46,6 @@ export default function Header() {
                         <div className="col-lg-12">
                             <nav className="navbar navbar-expand-lg navbar-light">
                                 <Link className="navbar-brand" to="/">
-                                    {" "}
                                     <img src="img/logo_ms.png" alt="logo" />{" "}
                                 </Link>
                                 <button
@@ -94,12 +93,15 @@ export default function Header() {
                                 </div>
 
 
+
                                 <div className='menu_side_box'>
                                     <div className='cart_box'>
                                         <Link to="/cart" className="cart_btn">
                                             <i className='ti-shopping-cart'></i>
-                                            {cartCount !== 0 && (
-                                                <span className='count_box'> {cartCount}</span>
+                                            {box !== 0 && (
+                                                <>
+                                                    <span className='count_box'> {box} </span>
+                                                </>
                                             )}
                                         </Link>
                                     </div>

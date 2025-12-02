@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -6,8 +6,14 @@ import { getCartItmes, placeOrder, deleteCartItem } from '../utils/function'
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 
+import Lottie from "lottie-react";
+import animationData from "../assets/empty_cart.json";
+import { CartContext } from "../context/CartContext";
+
 
 export default function Cart() {
+
+    const {cartVal} = useContext(CartContext)
 
     const [cartData, setCartData] = useState();
     const [loader, setLoader] = useState(true);
@@ -18,20 +24,17 @@ export default function Cart() {
         placeOrder(val);
         nav('/checkout')
     }
-    
 
     const deleteCartData = async (val) => {
-        
+
         setLoader(true);
         await deleteCartItem(val);
-
         const data = await getCartItmes();
-
         setCartData(data);
         setLoader(false)
+        cartVal();
 
     }
-
 
     useEffect(() => {
         (async () => {
@@ -152,7 +155,16 @@ export default function Cart() {
                                 </>)
                                 :
                                 (<>
-                                    empty cart
+
+
+                                    <div className="cart_empty_box">
+                                        <div className="anime_box">
+                                            <Lottie animationData={animationData} loop={true} />
+                                        </div>
+                                        <h3>Empty Cart</h3>
+                                    </div>
+
+
                                 </>)}
 
 

@@ -101,3 +101,20 @@ body .container {
     font-size: 55px;
 }
 
+.cart_empty_box .anime_box {
+    max-width: 350px;
+}
+
+.cart_empty_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart_empty_box h3 {
+    font-size: 50px;
+}
+
+.section_padding {
+    padding: 80px 0px;
+}

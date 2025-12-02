@@ -1,6 +1,8 @@
 
-- refresh page
+x refresh page
 
-- delete item
+x delete item
 
 - loader on all pages
+
+- cart context 
