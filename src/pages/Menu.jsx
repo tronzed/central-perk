@@ -1,26 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import { getMenuData, addCart, getCartData } from '../utils/function'
 import Loader from "../components/Loader";
+import { CartContext } from "../context/CartContext";
 
 export default function About() {
 
+    const { cartVal } = useContext(CartContext)
 
     const [menuData, setMenuData] = useState();
     const [loader, setLoader] = useState(true);
     const [cartData, setCartData] = useState([]);
 
     const getMenu = async () => {
+
         const data = await getMenuData();
         setMenuData(data);
-        setLoader(false);
 
         const data2 = await getCartData();
         setCartData(data2);
-
+        
+        setLoader(false);
+        cartVal();
     };
+
+
 
     const checkCartBox = (val) => {
         const data = cartData.some(item => item.item == val);
@@ -50,8 +56,6 @@ export default function About() {
             <Header />
 
             <Loader status={loader} />
-
-            {console.log(cartData, '======2===cartData====2=====')}
 
             <>
                 <section className="food_menu gray_bg">

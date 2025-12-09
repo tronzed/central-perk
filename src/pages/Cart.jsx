@@ -24,7 +24,7 @@ export default function Cart() {
         placeOrder(val);
         nav('/checkout')
     }
-
+    
     const deleteCartData = async (val) => {
 
         setLoader(true);

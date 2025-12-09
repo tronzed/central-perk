@@ -92,13 +92,11 @@ export default function Header() {
                                     </ul>
                                 </div>
 
-
-
                                 <div className='menu_side_box'>
                                     <div className='cart_box'>
                                         <Link to="/cart" className="cart_btn">
                                             <i className='ti-shopping-cart'></i>
-                                            {box !== 0 && (
+                                            {box != 0 && (
                                                 <>
                                                     <span className='count_box'> {box} </span>
                                                 </>
