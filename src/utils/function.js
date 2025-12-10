@@ -74,12 +74,20 @@ export const getCartData = async () => {
 export const getCartItmes = async () => {
 
     const cartData = await getCartData();
+
     const menuData = await getMenuData();
 
-    const cartItems = menuData.filter((menuItem) => cartData.some((cartItem) => menuItem.fbId === cartItem.item));
+    const cartItems = [];
 
-    for (let i = 0; i < cartItems.length; i++) {
-        cartItems[i].cartId = cartData[i].cartId
+    for (const menuItem of menuData) {
+        const data = cartData.find(item => item.item === menuItem.fbId);
+
+        if (data) {
+            cartItems.push({
+                ...menuItem,
+                cartId: data.cartId
+            })
+        }
     }
 
     const price = cartItems.map((itme) => itme.price);
