@@ -26,14 +26,12 @@ export default function Cart() {
     }
     
     const deleteCartData = async (val) => {
-
         setLoader(true);
         await deleteCartItem(val);
         const data = await getCartItmes();
         setCartData(data);
         setLoader(false)
         cartVal();
-
     }
 
     useEffect(() => {
