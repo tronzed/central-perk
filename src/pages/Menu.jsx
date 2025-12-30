@@ -140,7 +140,7 @@ export default function About() {
                                                         <div className="col-sm-6">
                                                             <div className="single_food_item media">
                                                                 <img
-                                                                    src={`img/food_menu/single_food_${key + 1}.png`}
+                                                                    src={`img/food_menu/single_food_${'1'}.png`}
                                                                     className="mr-3"
                                                                     alt="..."
                                                                 />
