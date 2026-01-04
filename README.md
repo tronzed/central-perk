@@ -1,16 +1,25 @@
-# React + Vite
+Centrel Perks 🍽️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Centrel Perks is a modern food ordering and table reservation web application built with React. It allows users to browse menus, place orders online, and reserve tables at their favorite restaurants with ease.
 
-Currently, two official plugins are available:
+Features ✨
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Browse Menu: View a full menu with categories and item details.
 
-## React Compiler
+Online Ordering: Add items to cart and place orders seamlessly.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Table Reservation: Reserve tables for a preferred date and time.
 
-## Expanding the ESLint configuration
+Responsive Design: Works perfectly on desktop, tablet, and mobile.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React Powered: Built using React for a fast and interactive UI.
+
+Tech Stack 🛠️
+
+Frontend: React, React Router, Axios
+
+Styling: CSS / SCSS / Styled Components / Tailwind CSS 
+
+Backend: (Optional: Firebase)
+
+Deployment: (Optional: Vercel)
