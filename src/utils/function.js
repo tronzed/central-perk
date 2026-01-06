@@ -36,7 +36,7 @@ export const addCart = (value) => {
 
 // Book table start
 export const book_table = (value) => {
-    const data = value;
+    const data =  value;
 
     fetch(firebaseURL + 'tableBook/.json', {
         method: 'POST',
