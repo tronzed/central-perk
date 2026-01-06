@@ -20,7 +20,7 @@ export const getMenuData = async () => {
 // add to cart start
 export const addCart = (value) => {
 
-    const data = { item: value }
+    const data =  value;
 
     fetch(firebaseURL + 'cart/.json', {
         method: 'POST',
@@ -161,5 +161,3 @@ export const deleteCartItem = async (val) => {
 }
 
 // delete cart item end
-
-
