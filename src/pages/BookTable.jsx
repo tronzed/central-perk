@@ -2,7 +2,7 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { book_table } from '../utils/function'
+import { book_table, createDataId } from '../utils/function'
 
 export default function BookTable() {
 
@@ -21,7 +21,9 @@ export default function BookTable() {
 
         e.preventDefault();
 
-        const data = { name: name, email: email, phone: phone, peopleNo: peopleNo, date: date, time: time, tableNo: tableNo }
+        const id = createDataId('tbl')
+
+        const data = { idBox:id, name: name, email: email, phone: phone, peopleNo: peopleNo, date: date, time: time, tableNo: tableNo }
         book_table(data);
 
         // console.log(data);

@@ -35,9 +35,8 @@ export const addCart = (value) => {
 
 
 // Book table start
-export const book_table = (value) => {
-    const data =  value;
-
+export const book_table = (value) => {    
+    const data = value;
     fetch(firebaseURL + 'tableBook/.json', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -161,3 +160,10 @@ export const deleteCartItem = async (val) => {
 }
 
 // delete cart item end
+
+
+
+// Timestamp + Random Number (Recommended)
+export const createDataId = (val) => {
+    return `${val}-${Date.now().toString(36)}${Math.random().toString(36).slice(2,4)}`;
+};
