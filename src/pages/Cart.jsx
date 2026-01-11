@@ -13,18 +13,24 @@ import { CartContext } from "../context/CartContext";
 
 export default function Cart() {
 
-    const {cartVal} = useContext(CartContext)
+    const { cartVal } = useContext(CartContext)
 
     const [cartData, setCartData] = useState();
+    const [orderType, setOrderType] = useState();
     const [loader, setLoader] = useState(true);
 
     const nav = useNavigate();
 
-    const orderData = (val) => {
-        placeOrder(val);
+    const orderData = (e) => {
+
+        e.preventDefault();
+
+        const finalData = { cartData, orderType, total: cartData?.total }
+
+        placeOrder(finalData);
         nav('/checkout')
     }
-    
+
     const deleteCartData = async (val) => {
         setLoader(true);
         await deleteCartItem(val);
@@ -45,8 +51,6 @@ export default function Cart() {
     return (
         <>
             <Header />
-
-            {/* {console.log(cartData, '-----cartData------')} */}
 
             <Loader status={loader} />
 
@@ -73,13 +77,10 @@ export default function Cart() {
                                                 </thead>
                                                 <tbody>
 
-
                                                     {
-
                                                         cartData?.map((item, key) => (
-
                                                             <>
-                                                                <tr>
+                                                                <tr key={key}>
                                                                     <th scope="row">
                                                                         <div className="d-flex align-items-center">
                                                                             <img
@@ -118,32 +119,51 @@ export default function Cart() {
                                         <div className="col-sm-4">
 
                                             <div className="bg-light rounded">
-                                                <div className="p-4">
-                                                    <h1 className="display-6 mb-4">
-                                                        Cart <span className="fw-normal">Total</span>
-                                                    </h1>
-                                                    <div className="d-flex justify-content-between mb-4">
-                                                        <h5 className="mb-0 me-4">Subtotal:</h5>
-                                                        <p className="mb-0">${cartData?.total}</p>
-                                                    </div>
-                                                    <div className="d-flex justify-content-between">
-                                                        <h5 className="mb-0 me-4">Shipping</h5>
-                                                        <div className="">
-                                                            <p className="mb-0">Flat rate: $3.00</p>
+
+                                                <form onSubmit={orderData}>
+
+                                                    <div className="p-4 py-4 border-bottom">
+                                                        <div className="form-group">
+                                                            <label>Order type</label>
+                                                            <select
+                                                                required
+                                                                className="form-control"
+                                                                value={orderType} onChange={(e) => setOrderType(e.target.value)}>
+                                                                <option value="">Select</option>
+                                                                <option value="delivery">Delivery</option>
+                                                                <option value="takeaway">Takeaway</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="p-4 py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                                    <h5 className="mb-0 ps-4 me-4">Total</h5>
-                                                    <p className="mb-0 pe-4">${cartData?.total + 3}</p>
-                                                </div>
-                                                <button
-                                                    className="btn_4 w-100 text-center"
-                                                    type="button"
-                                                    onClick={() => { orderData(cartData); }}
-                                                >
-                                                    Proceed Checkout
-                                                </button>
+
+                                                    <div className="p-4">
+                                                        <h1 className="display-6 mb-4">
+                                                            Cart <span className="fw-normal">Total</span>
+                                                        </h1>
+                                                        <div className="d-flex justify-content-between mb-4">
+                                                            <h5 className="mb-0 me-4">Subtotal:</h5>
+                                                            <p className="mb-0">${cartData?.total}</p>
+                                                        </div>
+                                                        <div className="d-flex justify-content-between">
+                                                            <h5 className="mb-0 me-4">Shipping</h5>
+                                                            <div className="">
+                                                                <p className="mb-0">Flat rate: $3.00</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="p-4 py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                                                        <h5 className="mb-0 ps-4 me-4">Total</h5>
+                                                        <p className="mb-0 pe-4">${cartData?.total + 3}</p>
+                                                    </div>
+                                                    <button
+                                                        className="btn_4 w-100 text-center"
+                                                        type="submit">
+                                                        Proceed Checkout
+                                                    </button>
+
+                                                </form>
+
+
                                             </div>
 
 
@@ -164,8 +184,6 @@ export default function Cart() {
 
 
                                 </>)}
-
-
 
                         </div>
                     </section>

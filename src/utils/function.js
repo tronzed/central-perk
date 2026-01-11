@@ -35,7 +35,7 @@ export const addCart = (value) => {
 
 
 // Book table start
-export const book_table = (value) => {    
+export const book_table = (value) => {
     const data = value;
     fetch(firebaseURL + 'tableBook/.json', {
         method: 'POST',
@@ -94,7 +94,7 @@ export const getCartItmes = async () => {
     let total = 0;
 
     for (let a = 0; a < price.length; a++) {
-        total += price[a];
+        total += parseInt(price[a])
     }
 
     cartItems.total = total
@@ -122,20 +122,16 @@ export const getCartCount = async () => {
 // Get menu end
 
 
-
 // place order start 
 export const placeOrder = (order) => {
-
-    const data = { order }
 
     fetch(firebaseURL + "order" + '.json', {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(order)
     }).then(() => {
         console.log("added");
     });
-
 
     fetch(firebaseURL + "cart" + '.json', {
         method: 'DELETE'
@@ -148,22 +144,31 @@ export const placeOrder = (order) => {
 
 
 // delete cart item start
-
 export const deleteCartItem = async (val) => {
 
-    await fetch(firebaseURL + 'cart/' + val + '.json', {
-        method: "DELETE"
-    }).then(() => {
-        console.log('item deleted');
-    });
+    try {
+
+        const res = await fetch(firebaseURL + 'cart/' + val + '.json', {
+            method: "DELETE"
+        });
+
+        if (!res.ok) {
+            throw new Error('unable to delete');
+        }
+
+        return true;
+
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 
 }
-
 // delete cart item end
 
 
 
 // Timestamp + Random Number (Recommended)
 export const createDataId = (val) => {
-    return `${val}-${Date.now().toString(36)}${Math.random().toString(36).slice(2,4)}`;
+    return `${val}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 4)}`;
 };
