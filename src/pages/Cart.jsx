@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getCartItmes, placeOrder, deleteCartItem } from '../utils/function'
+import { getCartItmes, placeOrder, deleteCartItem, createDataId } from '../utils/function'
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 
@@ -23,9 +23,11 @@ export default function Cart() {
 
     const orderData = (e) => {
 
+        const orderId = createDataId('ord');
+
         e.preventDefault();
 
-        const finalData = { cartData, orderType, total: cartData?.total }
+        const finalData = { orderId: orderId, cartData, orderType, total: cartData?.total }
 
         placeOrder(finalData);
         nav('/checkout')
