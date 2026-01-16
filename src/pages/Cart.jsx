@@ -27,7 +27,11 @@ export default function Cart() {
 
         e.preventDefault();
 
-        const finalData = { orderId: orderId, cartData, orderType, total: cartData?.total }
+        const date = new Date().toLocaleDateString('en-IN');
+
+        const time = new Date().toLocaleTimeString('en-IN');
+
+        const finalData = { orderId: orderId, cartData, orderType, total: cartData?.total,date,time }
 
         placeOrder(finalData);
         nav('/checkout')
