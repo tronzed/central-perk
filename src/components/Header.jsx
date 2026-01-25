@@ -30,6 +30,7 @@ export default function Header() {
         }
     }
 
+    const userBox = auth.currentUser;
 
     const handleSignOut = async () => {
         try {
@@ -111,11 +112,22 @@ export default function Header() {
                                                 Contact
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
-                                            <button onClick={handleSignOut} className="btn " to="/contact">
-                                                Sign Out
-                                            </button>
+                                        <li className="nav-item dropdown">
+                                            <Link className="nav-link dropdown-toggle">
+                                                {'Hi ' + userBox?.displayName || 'User'}
+                                            </Link>
+                                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                {/* <Link className="dropdown-item" to="/">
+                                                    User Detail
+                                                </Link> */}
+                                                <button onClick={handleSignOut} className="dropdown-item ">
+                                                    Sign Out
+                                                </button>
+                                            </div>
                                         </li>
+
+
+
                                     </ul>
                                 </div>
 

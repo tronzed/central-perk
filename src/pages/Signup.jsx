@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../firebase';
 import { useState } from "react";
 
@@ -9,6 +9,7 @@ export default function Signup() {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [nameBox, setNameBox] = useState();
 
     const handleSubmit = async (e) => {
 
@@ -16,6 +17,11 @@ export default function Signup() {
 
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
+
+            await updateProfile(res.user,{
+                displayName:nameBox
+            });
+
             nav('/');
         } catch (error) {
             console.error(error)
@@ -29,6 +35,16 @@ export default function Signup() {
                     <div className="auth_form_box">
                         <h3>Sign Up</h3>
                         <form onSubmit={(e) => { handleSubmit(e) }}>
+                            <div className="form-group">
+                                <input
+                                    className="form-control"
+                                    placeholder="Name"
+                                    type="text"
+                                    required
+                                    value={nameBox}
+                                    onChange={(e) => { setNameBox(e.target.value) }}
+                                />
+                            </div>
                             <div className="form-group">
                                 <input
                                     className="form-control"
