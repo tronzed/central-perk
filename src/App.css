@@ -118,3 +118,43 @@ body .container {
 .section_padding {
     padding: 80px 0px;
 }
+.blog_item_section  .single_blog_item {
+    margin-bottom: 40px;
+}
+
+.blog_item_section  .single_blog_item .single_blog_img img {
+    border-radius: 8px 8px 0 0;
+}
+
+.blog_item_section .single_blog_text {
+    padding: 15px 30px 25px;
+}
+
+.auth_form_box {
+    max-width: 400px;
+    margin: auto;
+    border: 1px solid #fdcb9e;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 11px 11px 0 0 #f5f5f5;
+}
+
+.auth_form_cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.auth_form_box h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 35px;
+}
+.auth_form_box .link_box {
+    text-align: center;
+}
+.auth_form_box .link_box a {
+    color: #4c4c4c;
+}

@@ -10,6 +10,8 @@ import BookTable from "./pages/BookTable"
 import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import { CartProvider } from "./context/CartContext"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
             <Route path="/book" element={<BookTable />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<Signup />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

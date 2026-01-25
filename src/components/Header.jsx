@@ -1,4 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Banner from './Banner'
 import Breadcrumb from './Breadcrumb'
 import { useContext, useEffect, useState } from 'react';
@@ -10,6 +12,8 @@ import { CartContext } from '../context/CartContext';
 export default function Header() {
 
     const { box } = useContext(CartContext);
+
+    const nav = useNavigate();
 
     const [breadBox, setBreadBox] = useState();
 
@@ -26,6 +30,16 @@ export default function Header() {
         }
     }
 
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
     useEffect(() => {
 
         (async () => {
@@ -36,7 +50,15 @@ export default function Header() {
         })();
 
         bread();
+
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                nav('/login');
+            }
+        });
+
     }, []);
+
 
     return (
         <>
@@ -88,6 +110,11 @@ export default function Header() {
                                             <Link className="nav-link" to="/contact">
                                                 Contact
                                             </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <button onClick={handleSignOut} className="btn " to="/contact">
+                                                Sign Out
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>

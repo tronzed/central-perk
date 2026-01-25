@@ -10,6 +10,7 @@ import Lottie from "lottie-react";
 import animationData from "../assets/empty_cart.json";
 import { CartContext } from "../context/CartContext";
 
+import { auth } from '../firebase';
 
 export default function Cart() {
 
@@ -21,6 +22,8 @@ export default function Cart() {
 
     const nav = useNavigate();
 
+    const userBox = auth.currentUser
+
     const orderData = (e) => {
 
         const orderId = createDataId('ord');
@@ -31,7 +34,7 @@ export default function Cart() {
 
         const time = new Date().toLocaleTimeString('en-IN');
 
-        const finalData = { orderId: orderId, cartData, orderType, total: cartData?.total,date,time }
+        const finalData = { userId: userBox.uid, orderId: orderId, cartData, orderType, total: cartData?.total, date, time }
 
         placeOrder(finalData);
         nav('/checkout')
