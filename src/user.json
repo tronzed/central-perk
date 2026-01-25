@@ -1,0 +1,81 @@
+{
+  "users": {
+    "uid_12345": {
+      "profile": {
+        "name": "Rahul Sharma",
+        "email": "rahul@gmail.com",
+        "phone": "+91-9876543210",
+        "role": "customer",
+        "createdAt": "2026-01-25T10:30:00Z"
+      },
+
+      "addresses": {
+        "addr_1": {
+          "label": "Home",
+          "address": "12, MG Road, Bengaluru",
+          "lat": 12.9716,
+          "lng": 77.5946
+        }
+      }
+    }
+  },
+
+  "orders": {
+    "order_1001": {
+      "orderId": "order_1001",
+      "userId": "uid_12345",
+
+      "restaurant": {
+        "restaurantId": "rest_101",
+        "name": "Green Leaf Cafe"
+      },
+
+      "items": {
+        "item_1": {
+          "name": "Veg Burger",
+          "price": 120,
+          "qty": 2,
+          "total": 240
+        },
+        "item_2": {
+          "name": "French Fries",
+          "price": 90,
+          "qty": 1,
+          "total": 90
+        }
+      },
+
+      "pricing": {
+        "itemTotal": 330,
+        "tax": 25,
+        "deliveryFee": 40,
+        "grandTotal": 395
+      },
+
+      "deliveryAddress": {
+        "label": "Home",
+        "address": "12, MG Road, Bengaluru"
+      },
+
+      "status": "delivered",
+      "paymentMethod": "UPI",
+      "createdAt": "2026-01-25T11:15:00Z"
+    }
+  },
+
+  "userOrders": {
+    "uid_12345": {
+      "order_1001": true
+    }
+  },
+
+  "cart": {
+    "uid_12345": {
+      "item_1": {
+        "name": "Veg Burger",
+        "price": 120,
+        "qty": 1
+      }
+    }
+  }
+}
