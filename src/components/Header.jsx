@@ -117,9 +117,9 @@ export default function Header() {
                                                 {'Hi ' + userBox?.displayName || 'User'}
                                             </Link>
                                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                {/* <Link className="dropdown-item" to="/">
-                                                    User Detail
-                                                </Link> */}
+                                                <Link className="dropdown-item" to="/profile">
+                                                    Profile
+                                                </Link>
                                                 <button onClick={handleSignOut} className="dropdown-item ">
                                                     Sign Out
                                                 </button>

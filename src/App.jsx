@@ -12,6 +12,7 @@ import Checkout from "./pages/Checkout"
 import { CartProvider } from "./context/CartContext"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
+import Profile from "./pages/Profile"
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Signup />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

@@ -167,8 +167,36 @@ export const deleteCartItem = async (val) => {
 // delete cart item end
 
 
-
 // Timestamp + Random Number (Recommended)
 export const createDataId = (val) => {
     return `${val}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 4)}`;
 };
+
+
+// Profile add start
+export const profileAddDetail = (value, id) => {
+    const data = value;
+    fetch(firebaseURL + 'users/' + id + '.json', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    }).then(() => {
+        console.log('profile add detail')
+    });
+}
+// Profile add end
+
+
+// Profile add start
+export const SignUpDetail = (id) => {
+
+    fetch(firebaseURL + 'users/' + id + '.json', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    }).then(() => {
+        console.log('Added Id')
+    });
+
+}
+// Profile add end

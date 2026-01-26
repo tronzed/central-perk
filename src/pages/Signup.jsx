@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../firebase';
 import { useState } from "react";
+import { profileAddDetail } from '../utils/function'
 
 export default function Signup() {
 
@@ -22,7 +23,9 @@ export default function Signup() {
                 displayName:nameBox
             });
 
-            nav('/');
+            await profileAddDetail(res.user.uid);
+
+            // nav('/');
         } catch (error) {
             console.error(error)
         }
