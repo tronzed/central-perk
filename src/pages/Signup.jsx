@@ -19,11 +19,13 @@ export default function Signup() {
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
-            await updateProfile(res.user,{
-                displayName:nameBox
+            await updateProfile(res.user, {
+                displayName: nameBox
             });
 
-            await profileAddDetail(res.user.uid);
+            if (auth.currentUser) {
+                await profileAddDetail({ name: nameBox }, res.user.uid);
+            }
 
             // nav('/');
         } catch (error) {
