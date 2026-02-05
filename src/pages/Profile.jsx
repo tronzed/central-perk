@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import {auth} from '../firebase'
+import { auth } from '../firebase'
 
-import { profileAddDetail } from '../utils/function'
+import { profileAddDetail, getProfileData } from '../utils/function'
 
 export default function Profile() {
 
@@ -16,25 +16,45 @@ export default function Profile() {
     const [date, setDate] = useState();
     const [address, setAddress] = useState();
 
-    const userId = auth.currentUser.uid;
+    const [dataBox, setDataBox] = useState();
+
+
+    const userId = auth?.currentUser?.uid;
 
     const submitForm = (e) => {
 
         e.preventDefault();
 
         const data = { name: name, email: email, phone: phone, date: date, address: address }
-        profileAddDetail(data,userId);
+        profileAddDetail(data, userId);
 
     }
+
+
+    const getDetail = async () => {
+
+        const data = await getProfileData(userId);
+
+        console.log(data);
+
+        // setDataBox(data);
+
+    }
+
+
+    useEffect(() => {
+        getDetail();
+    }, [])
+
 
     return (
         <>
             <Header />
-            
+
             <>
                 <>
                     <section className="contact-section section_padding">
-                        <div className="container">                            
+                        <div className="container">
                             <div className="row">
                                 <div className="col-lg-12">
                                     <h2 className="contact-title">Profile</h2>
