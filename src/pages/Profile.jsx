@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { auth } from '../firebase'
 
 import { profileAddDetail, getProfileData } from '../utils/function'
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function Profile() {
 
@@ -22,20 +23,18 @@ export default function Profile() {
     const userId = auth?.currentUser?.uid;
 
     const submitForm = (e) => {
-
         e.preventDefault();
-
         const data = { name: name, email: email, phone: phone, date: date, address: address }
         profileAddDetail(data, userId);
-
     }
 
 
-    const getDetail = async () => {
+    const getDetail = async (id) => {
 
-        const data = await getProfileData(userId);
+        const data = await getProfileData(id);
 
-        console.log(data);
+        console.log(data, '=============dadadadadada');
+        console.log(userId, '=============userIduserIduserId');
 
         // setDataBox(data);
 
@@ -43,7 +42,15 @@ export default function Profile() {
 
 
     useEffect(() => {
-        getDetail();
+
+        onAuthStateChanged(auth, (user) => {
+
+            if (user) {
+                getDetail(user.uid);
+            }
+
+        })
+
     }, [])
 
 
