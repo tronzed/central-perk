@@ -174,15 +174,26 @@ export const createDataId = (val) => {
 
 
 // Profile add start
-export const profileAddDetail = (value, id) => {
+export const profileAddDetail = async (value, id) => {
+
     const data = value;
-    fetch(firebaseURL + 'users/' + id + '.json', {
-        method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    }).then(() => {
-        console.log('profile add detail')
-    });
+
+    try {
+
+        const res = await fetch(firebaseURL + 'users/' + id + '.json', {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (!res.ok) {
+            throw new Error('unable to add details');
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+
 }
 // Profile add end
 
@@ -203,6 +214,7 @@ export const SignUpDetail = (value, id) => {
 // Profile add end
 
 
+// get profile data start
 export const getProfileData = async (id) => {
 
     try {
@@ -224,3 +236,4 @@ export const getProfileData = async (id) => {
     }
 
 }
+// get profile data end

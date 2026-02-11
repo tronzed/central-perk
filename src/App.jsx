@@ -13,6 +13,7 @@ import { CartProvider } from "./context/CartContext"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Profile from "./pages/Profile"
+import Orders from "./pages/Orders"
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/orders" element={<Orders />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

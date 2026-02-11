@@ -6,6 +6,7 @@ import { auth } from '../firebase'
 
 import { profileAddDetail, getProfileData } from '../utils/function'
 import { onAuthStateChanged } from "firebase/auth";
+import Loader from "../components/Loader";
 
 export default function Profile() {
 
@@ -16,27 +17,32 @@ export default function Profile() {
 
     const [date, setDate] = useState();
     const [address, setAddress] = useState();
-
-    const [dataBox, setDataBox] = useState();
+    const [loader, setLoader] = useState(true);
 
 
     const userId = auth?.currentUser?.uid;
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
+        setLoader(true);
+        
         const data = { name: name, email: email, phone: phone, date: date, address: address }
-        profileAddDetail(data, userId);
+        await profileAddDetail(data, userId);
+        
+        setLoader(false);
+
     }
 
 
     const getDetail = async (id) => {
 
         const data = await getProfileData(id);
-
-        console.log(data, '=============dadadadadada');
-        console.log(userId, '=============userIduserIduserId');
-
-        // setDataBox(data);
+        setName(data?.name);
+        setEmail(data?.email);
+        setPhone(data?.phone);
+        setDate(data?.date);
+        setAddress(data?.address);
+        setLoader(false);
 
     }
 
@@ -58,6 +64,8 @@ export default function Profile() {
         <>
             <Header />
 
+            <Loader status={loader} />
+
             <>
                 <>
                     <section className="contact-section section_padding">
@@ -67,7 +75,6 @@ export default function Profile() {
                                     <h2 className="contact-title">Profile</h2>
                                     <form
                                         className="form-contact contact_form"
-                                        method="post"
                                         onSubmit={submitForm}
                                     >
                                         <div className="row">
