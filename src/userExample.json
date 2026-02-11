@@ -8,7 +8,6 @@
         "role": "customer",
         "createdAt": "2026-01-25T10:30:00Z"
       },
-
       "addresses": {
         "addr_1": {
           "label": "Home",
@@ -19,47 +18,186 @@
       }
     }
   },
-
   "orders": {
-    "order_1001": {
-      "orderId": "order_1001",
-      "userId": "uid_12345",
-
-      "restaurant": {
-        "restaurantId": "rest_101",
-        "name": "Green Leaf Cafe"
-      },
-
-      "items": {
-        "item_1": {
-          "name": "Veg Burger",
-          "price": 120,
-          "qty": 2,
-          "total": 240
+    "userId123": {
+      "order001": {
+        "orderId": "order001",
+        "user": {
+          "id": "userId123",
+          "name": "Rahul Sharma",
+          "email": "rahul@gmail.com"
         },
-        "item_2": {
-          "name": "French Fries",
-          "price": 90,
-          "qty": 1,
-          "total": 90
-        }
+        "items": [
+          {
+            "productId": "p101",
+            "name": "HP Laptop",
+            "price": 45000,
+            "qty": 1,
+            "image": "laptop.png"
+          },
+          {
+            "productId": "p205",
+            "name": "Wireless Mouse",
+            "price": 799,
+            "qty": 1,
+            "image": "mouse.png"
+          }
+        ],
+        "shippingAddress": {
+          "name": "Rahul Sharma",
+          "phone": "9876543210",
+          "city": "Delhi",
+          "pincode": "110001"
+        },
+        "payment": {
+          "method": "UPI",
+          "status": "Success",
+          "txnId": "TXN98765001"
+        },
+        "status": "Delivered",
+        "totalAmount": 45799,
+        "createdAt": 1707654300000,
+        "updatedAt": 1707658900000
       },
-
-      "pricing": {
-        "itemTotal": 330,
-        "tax": 25,
-        "deliveryFee": 40,
-        "grandTotal": 395
+      "order002": {
+        "orderId": "order002",
+        "user": {
+          "id": "userId123",
+          "name": "Rahul Sharma",
+          "email": "rahul@gmail.com"
+        },
+        "items": [
+          {
+            "productId": "p305",
+            "name": "Bluetooth Headphones",
+            "price": 2999,
+            "qty": 1,
+            "image": "headphone.png"
+          }
+        ],
+        "shippingAddress": {
+          "name": "Rahul Sharma",
+          "phone": "9876543210",
+          "city": "Delhi",
+          "pincode": "110001"
+        },
+        "payment": {
+          "method": "Card",
+          "status": "Success",
+          "txnId": "TXN98765002"
+        },
+        "status": "Shipped",
+        "totalAmount": 2999,
+        "createdAt": 1707800000000,
+        "updatedAt": 1707803600000
+      }
+    },
+    "userId456": {
+      "order003": {
+        "orderId": "order003",
+        "user": {
+          "id": "userId456",
+          "name": "Priya Verma",
+          "email": "priya@gmail.com"
+        },
+        "items": [
+          {
+            "productId": "p401",
+            "name": "Samsung Mobile",
+            "price": 18000,
+            "qty": 1,
+            "image": "mobile.png"
+          },
+          {
+            "productId": "p210",
+            "name": "Screen Guard",
+            "price": 299,
+            "qty": 1,
+            "image": "guard.png"
+          }
+        ],
+        "shippingAddress": {
+          "name": "Priya Verma",
+          "phone": "9123456789",
+          "city": "Mumbai",
+          "pincode": "400001"
+        },
+        "payment": {
+          "method": "COD",
+          "status": "Pending",
+          "txnId": ""
+        },
+        "status": "Processing",
+        "totalAmount": 18299,
+        "createdAt": 1707900000000,
+        "updatedAt": 1707900000000
       },
-
-      "deliveryAddress": {
-        "label": "Home",
-        "address": "12, MG Road, Bengaluru"
-      },
-
-      "status": "delivered",
-      "paymentMethod": "UPI",
-      "createdAt": "2026-01-25T11:15:00Z"
+      "order004": {
+        "orderId": "order004",
+        "user": {
+          "id": "userId456",
+          "name": "Priya Verma",
+          "email": "priya@gmail.com"
+        },
+        "items": [
+          {
+            "productId": "p509",
+            "name": "Office Chair",
+            "price": 7500,
+            "qty": 1,
+            "image": "chair.png"
+          }
+        ],
+        "shippingAddress": {
+          "name": "Priya Verma",
+          "phone": "9123456789",
+          "city": "Mumbai",
+          "pincode": "400001"
+        },
+        "payment": {
+          "method": "UPI",
+          "status": "Success",
+          "txnId": "TXN65432109"
+        },
+        "status": "Delivered",
+        "totalAmount": 7500,
+        "createdAt": 1708000000000,
+        "updatedAt": 1708086400000
+      }
+    },
+    "userId789": {
+      "order005": {
+        "orderId": "order005",
+        "user": {
+          "id": "userId789",
+          "name": "Amit Patel",
+          "email": "amit@gmail.com"
+        },
+        "items": [
+          {
+            "productId": "p610",
+            "name": "Smart Watch",
+            "price": 5500,
+            "qty": 1,
+            "image": "watch.png"
+          }
+        ],
+        "shippingAddress": {
+          "name": "Amit Patel",
+          "phone": "9988776655",
+          "city": "Ahmedabad",
+          "pincode": "380001"
+        },
+        "payment": {
+          "method": "Card",
+          "status": "Failed",
+          "txnId": "TXN11122233"
+        },
+        "status": "Cancelled",
+        "totalAmount": 5500,
+        "createdAt": 1708100000000,
+        "updatedAt": 1708103600000
+      }
     }
   },
 
@@ -68,7 +206,6 @@
       "order_1001": true
     }
   },
-
   "cart": {
     "uid_12345": {
       "item_1": {
