@@ -120,6 +120,9 @@ export default function Header() {
                                                 <Link className="dropdown-item" to="/profile">
                                                     Profile
                                                 </Link>
+                                                <Link className="dropdown-item" to="/orders">
+                                                    Orders
+                                                </Link>
                                                 <button onClick={handleSignOut} className="dropdown-item ">
                                                     Sign Out
                                                 </button>
