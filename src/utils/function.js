@@ -123,9 +123,9 @@ export const getCartCount = async () => {
 
 
 // place order start 
-export const placeOrder = (order) => {
+export const placeOrder = (orderId, userId, order) => {
 
-    fetch(firebaseURL + "order" + '.json', {
+    fetch(firebaseURL + "order/" + userId + '/' + orderId + '.json', {
         method: "POST",
         headers: { 'Content-Type': "application/json" },
         body: JSON.stringify(order)
