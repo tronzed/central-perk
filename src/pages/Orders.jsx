@@ -1,15 +1,53 @@
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
+import { getOrder } from "../utils/function";
+
+import { auth } from "../firebase";
+
+import { onAuthStateChanged } from "firebase/auth";
+
 export default function Orders() {
+
+
+    const [data, setData] = useState();
+
+    const getData = async (id) => {
+        const data = await getOrder(id);
+        setData(data);
+    }
+
+    useEffect(() => {
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                getData(user.uid);
+            }
+        })
+
+
+    }, [])
+
 
     return (
         <>
             <Header />
             <>
                 <>
+
+                    {console.log(data, '---data-----')}
+
                     <section className="contact-section section_padding">
                         <div className="container">
+
+                            {data.map((val, key) => (
+
+                                <>
+
+                                </>
+
+                            ))}
 
                             <div className="order_info_cover">
                                 <div className="order_info_box">
@@ -27,9 +65,9 @@ export default function Orders() {
                                         <li>Sandwich <span>$30</span></li>
                                     </ul>
                                 </div>
-
-
                             </div>
+
+
 
                         </div>
                     </section>

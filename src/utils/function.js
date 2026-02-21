@@ -143,6 +143,35 @@ export const placeOrder = (orderId, userId, order) => {
 // place order end 
 
 
+// get orders start
+
+export const getOrder = async (userId) => {
+
+    try {
+
+        const res = await fetch(firebaseURL + 'order/' + userId + '.json');
+
+        if (!res?.ok) {
+            throw new Error('unable to get order data');
+        }
+
+        const data = await res.json();
+
+        return data;
+
+    } catch (error) {
+        console.error(error);
+
+        return 'nothing';
+    }
+
+
+
+}
+
+// get orders end
+
+
 // delete cart item start
 export const deleteCartItem = async (val) => {
 
