@@ -143,34 +143,6 @@ export const placeOrder = (orderId, userId, order) => {
 // place order end 
 
 
-// get orders start
-
-export const getOrder = async (userId) => {
-
-    try {
-
-        const res = await fetch(firebaseURL + 'order/' + userId + '.json');
-
-        if (!res?.ok) {
-            throw new Error('unable to get order data');
-        }
-
-        const data = await res.json();
-
-        return data;
-
-    } catch (error) {
-        console.error(error);
-
-        return 'nothing';
-    }
-
-
-
-}
-
-// get orders end
-
 
 // delete cart item start
 export const deleteCartItem = async (val) => {
@@ -266,3 +238,41 @@ export const getProfileData = async (id) => {
 
 }
 // get profile data end
+
+
+
+
+// get orders start
+
+export const getOrder = async (userId) => {
+
+    try {
+
+        const res = await fetch(firebaseURL + 'order/' + userId + '.json');
+
+        if (!res?.ok) {
+            throw new Error('unable to get order data');
+        }
+
+        const data = await res.json();
+
+        const data2 = Object.values(data);
+        
+        const filterData = [];
+        
+        for ( const item of data2 ){
+            const arrVal = Object.values(item)[0];
+            filterData.push(arrVal)
+        }
+
+        return filterData
+
+    } catch (error) {
+        console.error(error);
+
+        return 'nothing';
+    }
+
+}
+
+// get orders end

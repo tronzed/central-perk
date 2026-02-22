@@ -36,19 +36,36 @@ export default function Orders() {
             <>
                 <>
 
-                    {console.log(data, '---data-----')}
-
                     <section className="contact-section section_padding">
                         <div className="container">
 
-                            {data.map((val, key) => (
+                            {data?.map((val, key) => {
 
-                                <>
+                                return (
 
-                                </>
+                                    <>
+                                        <div className="order_info_cover">
+                                            <div className="order_info_box">
+                                                <div className="top_box">
+                                                    <h5><span>Order Id</span>{val.orderId}</h5>
+                                                    <h5><span>Date</span> {val.date} | {val.time}</h5>
+                                                    <h5><span>Type</span> {val.orderType}</h5>
+                                                    <h5><span>Total</span> {val.total}</h5>
+                                                </div>
+                                                <ul className="order_item_list">
+                                                    {val?.cartData?.map((val, key) => (
+                                                        <>
+                                                            <li>{val?.name} <span>${val?.price}</span></li>
+                                                        </>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
 
-                            ))}
-
+                            })}
+                            {/* 
                             <div className="order_info_cover">
                                 <div className="order_info_box">
                                     <div className="top_box">
@@ -65,7 +82,7 @@ export default function Orders() {
                                         <li>Sandwich <span>$30</span></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> */}
 
 
 
