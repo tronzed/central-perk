@@ -257,10 +257,10 @@ export const getOrder = async (userId) => {
         const data = await res.json();
 
         const data2 = Object.values(data);
-        
+
         const filterData = [];
-        
-        for ( const item of data2 ){
+
+        for (const item of data2) {
             const arrVal = Object.values(item)[0];
             filterData.push(arrVal)
         }
@@ -269,8 +269,7 @@ export const getOrder = async (userId) => {
 
     } catch (error) {
         console.error(error);
-
-        return 'nothing';
+        return [];
     }
 
 }

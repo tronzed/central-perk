@@ -161,16 +161,17 @@ body .container {
 .order_info_cover .order_info_box {
     border: 1px solid #d3d3d3;
     background-color: #fff;
-    padding: 8px 12px 10px;
     border-radius: 10px;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .order_info_cover .order_info_box .top_box {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin-bottom: 5px;
+    padding: 5px 15px 0;
+    background-color: #f1f1f1;
 }
 
 .order_info_cover .order_info_box .top_box h5 {
@@ -187,7 +188,6 @@ body .container {
 
 .order_info_cover .order_info_box .order_item_list {
     background-color: #fff;
-    border: 1px solid #d1d1d1;
 }
 
 .order_info_cover .order_info_box .order_item_list:after {
