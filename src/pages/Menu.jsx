@@ -6,6 +6,10 @@ import { getMenuData, addCart, getCartData } from '../utils/function'
 import Loader from "../components/Loader";
 import { CartContext } from "../context/CartContext";
 
+import { auth } from "../firebase";
+
+import { onAuthStateChanged } from "firebase/auth";
+
 export default function About() {
 
     const { cartVal } = useContext(CartContext)
@@ -13,26 +17,24 @@ export default function About() {
     const [menuData, setMenuData] = useState();
     const [loader, setLoader] = useState(true);
     const [cartData, setCartData] = useState([]);
+    const [userId, setUserId] = useState([]);
 
     const getMenu = async () => {
 
         const data = await getMenuData();
         setMenuData(data);
 
-        const data2 = await getCartData();
+        const data2 = await getCartData(userId);
         setCartData(data2);
 
         setLoader(false);
-        cartVal();
+        cartVal(userId);
     };
-
-
 
     const checkCartBox = (val) => {
         const data = cartData.some(item => item.item == val);
         return data;
     }
-
 
     useEffect(() => {
 
@@ -46,6 +48,15 @@ export default function About() {
             const data = await getCartData();
             setCartData(data);
         })();
+
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUserId(auth?.currentUser?.uid);
+            }
+        })
+
+
 
     }, []);
 
@@ -88,7 +99,7 @@ export default function About() {
                                                 <div className="single_blog_text text-center">
                                                     <h3>{value?.name}</h3>
                                                     <h5>${value?.price}</h5>
-                                                    <button onClick={() => { addCart(value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
+                                                    <button onClick={() => { addCart(userId,value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
                                                         {checkCartBox(value.fbId) === true ? 'In Cart' : 'Add'}
                                                     </button>
                                                 </div>

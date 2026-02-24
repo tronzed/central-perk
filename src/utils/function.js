@@ -18,11 +18,11 @@ export const getMenuData = async () => {
 
 
 // add to cart start
-export const addCart = (value) => {
+export const addCart = (userId, value) => {
 
     const data = { item: value }
 
-    fetch(firebaseURL + 'cart/.json', {
+    fetch(firebaseURL + 'cart/' + userId + '.json', {
         method: 'POST',
         headers: { "Content-Type": 'application/json' },
         body: JSON.stringify(data)
@@ -49,10 +49,13 @@ export const book_table = (value) => {
 
 
 // Get menu start
-export const getCartData = async () => {
+export const getCartData = async (userId) => {
 
-    const res = await fetch(firebaseURL + "cart" + '.json');
+    const res = await fetch(firebaseURL + "cart/" + userId + '.json');
     const data = await res.json();
+
+    // console.log(data, 'data');
+    // console.log(userId, 'userId');
 
     if (!data) {
         return [];
@@ -70,9 +73,9 @@ export const getCartData = async () => {
 
 
 // Get cart items start
-export const getCartItmes = async () => {
+export const getCartItmes = async (userBoxId) => {
 
-    const cartData = await getCartData();
+    const cartData = await getCartData(userBoxId);
 
     const menuData = await getMenuData();
 
@@ -105,9 +108,9 @@ export const getCartItmes = async () => {
 
 
 // Get menu start
-export const getCartCount = async () => {
+export const getCartCount = async (userId) => {
 
-    const res = await fetch(firebaseURL + "cart" + '.json');
+    const res = await fetch(firebaseURL + "cart/" + userId + '.json');
     const data = await res.json();
 
     if (!data) {
@@ -116,6 +119,9 @@ export const getCartCount = async () => {
 
     const data2 = Object?.values(data);
     const data3 = data2.length;
+
+    console.log(data3,'data2data2data2data2');
+
     return data3;
 
 }
@@ -145,11 +151,11 @@ export const placeOrder = (orderId, userId, order) => {
 
 
 // delete cart item start
-export const deleteCartItem = async (val) => {
+export const deleteCartItem = async (id, val) => {
 
     try {
 
-        const res = await fetch(firebaseURL + 'cart/' + val + '.json', {
+        const res = await fetch(firebaseURL + 'cart/' + id + '/' + val + '.json', {
             method: "DELETE"
         });
 

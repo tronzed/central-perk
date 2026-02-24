@@ -11,6 +11,7 @@ import animationData from "../assets/empty_cart.json";
 import { CartContext } from "../context/CartContext";
 
 import { auth } from '../firebase';
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function Cart() {
 
@@ -19,6 +20,7 @@ export default function Cart() {
     const [cartData, setCartData] = useState();
     const [orderType, setOrderType] = useState();
     const [loader, setLoader] = useState(true);
+    const [userBoxId, setUserBoxId] = useState([]);
 
     const nav = useNavigate();
 
@@ -40,21 +42,30 @@ export default function Cart() {
         nav('/checkout')
     }
 
-    const deleteCartData = async (val) => {
+    const deleteCartData = async (id, val) => {
         setLoader(true);
-        await deleteCartItem(val);
-        const data = await getCartItmes();
+        await deleteCartItem(id, val);
+        const data = await getCartItmes(userBoxId);
         setCartData(data);
         setLoader(false)
-        cartVal();
+        cartVal(id);
     }
 
     useEffect(() => {
-        (async () => {
-            const data = await getCartItmes();
-            setCartData(data);
-            setLoader(false)
-        })();
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+
+                (async () => {
+                    const data = await getCartItmes(auth?.currentUser?.uid);
+                    setUserBoxId(auth?.currentUser?.uid);
+                    setCartData(data);
+                    setLoader(false)
+                })();
+
+            }
+        });
+
     }, []);
 
     return (
@@ -107,7 +118,7 @@ export default function Cart() {
                                                                         <p className="mb-0 mt-4">{item?.price}$</p>
                                                                     </td>
                                                                     <td>
-                                                                        <button onClick={() => { deleteCartData(item.cartId); }} className="btn btn-md rounded-circle bg-light border mt-4">
+                                                                        <button onClick={() => { deleteCartData(userBoxId, item.cartId); }} className="btn btn-md rounded-circle bg-light border mt-4">
                                                                             <i className="fa fa-times text-danger" />
                                                                         </button>
                                                                     </td>

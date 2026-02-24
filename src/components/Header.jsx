@@ -43,12 +43,20 @@ export default function Header() {
 
     useEffect(() => {
 
-        (async () => {
+        onAuthStateChanged(auth, (user) => {
 
-            const data = await getCartCount();
-            setCartCount(data);
+            if (user) {
 
-        })();
+                (async () => {
+
+                    const data = await getCartCount(auth?.currentUser?.uid);
+                    setCartCount(data);
+
+                })();
+
+            }
+
+        })
 
         bread();
 
@@ -107,11 +115,11 @@ export default function Header() {
                                                 Chefs
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" to="/contact">
                                                 Contact
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item dropdown">
                                             <Link className="nav-link dropdown-toggle">
                                                 {'Hi ' + userBox?.displayName || 'User'}
