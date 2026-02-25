@@ -54,9 +54,6 @@ export const getCartData = async (userId) => {
     const res = await fetch(firebaseURL + "cart/" + userId + '.json');
     const data = await res.json();
 
-    // console.log(data, 'data');
-    // console.log(userId, 'userId');
-
     if (!data) {
         return [];
     }
@@ -119,8 +116,6 @@ export const getCartCount = async (userId) => {
 
     const data2 = Object?.values(data);
     const data3 = data2.length;
-
-    console.log(data3,'data2data2data2data2');
 
     return data3;
 
