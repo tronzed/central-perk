@@ -19,6 +19,7 @@ export default function About() {
     const [cartData, setCartData] = useState([]);
     const [userId, setUserId] = useState([]);
 
+
     const getMenu = async () => {
 
         const data = await getMenuData();
@@ -31,10 +32,18 @@ export default function About() {
         cartVal(userId);
     };
 
+
     const checkCartBox = (val) => {
-        const data = cartData.some(item => item.item == val);
+
+        const data = cartData?.some(item => item.item == val);
+
+        console.log(cartData, 'data');
+        console.log(val, 'val');
+
         return data;
+
     }
+
 
     useEffect(() => {
 
@@ -53,6 +62,12 @@ export default function About() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserId(auth?.currentUser?.uid);
+
+                (async () => {
+                    const data = await getCartData(auth?.currentUser?.uid);
+                    setCartData(data);
+                })();
+
             }
         })
 
@@ -69,6 +84,9 @@ export default function About() {
             <Loader status={loader} />
 
             <>
+
+                {console.log(cartData, '---cartData---')}
+
                 <section className="blog_item_section section_padding">
                     <div className="container">
                         <div className="row">
@@ -85,7 +103,6 @@ export default function About() {
                             {
                                 menuData?.map((value, key) => (
                                     <>
-
                                         <div className="col-sm-6 col-lg-3">
                                             <div className="single_blog_item">
 
@@ -99,11 +116,10 @@ export default function About() {
                                                 <div className="single_blog_text text-center">
                                                     <h3>{value?.name}</h3>
                                                     <h5>${value?.price}</h5>
-                                                    <button onClick={() => { addCart(userId,value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
-                                                        {checkCartBox(value.fbId) === true ? 'In Cart' : 'Add'}
+                                                    <button onClick={() => { addCart(userId, value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
+                                                        {checkCartBox(value?.fbId) === true ? 'In Cart' : 'Add'}
                                                     </button>
                                                 </div>
-
                                             </div>
                                         </div>
 
@@ -111,9 +127,6 @@ export default function About() {
                                     </>
                                 ))
                             }
-
-
-
 
 
                         </div>
