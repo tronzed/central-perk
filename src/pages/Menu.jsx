@@ -115,7 +115,7 @@ export default function About() {
                                                 </div>
                                                 <div className="single_blog_text text-center">
                                                     <h3>{value?.name}</h3>
-                                                    <h5>${value?.price}</h5>
+                                                    <h5>${value?.price}</h5>    
                                                     <button onClick={() => { addCart(userId, value.fbId); setLoader(true); getMenu(); }} className={`add_btn`}>
                                                         {checkCartBox(value?.fbId) === true ? 'In Cart' : 'Add'}
                                                     </button>

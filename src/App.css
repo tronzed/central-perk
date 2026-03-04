@@ -207,3 +207,15 @@ body .container {
     border-bottom: 0;
 }
 
+.order_item_list .feedback_box button {
+    display: block;
+    width: 100%;
+}
+
+.order_info_cover .order_info_box .order_item_list li.feedback_box {
+    display: block;
+}
+.feedback_form_box {
+    padding: 30px;
+    background-color: #ffffff;
+}

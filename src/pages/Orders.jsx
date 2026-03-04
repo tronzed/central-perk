@@ -13,6 +13,8 @@ export default function Orders() {
 
     const [data, setData] = useState();
 
+    const [feedbackBtn, setFeedbackBtn] = useState(null);
+
     const getData = async (id) => {
         const data = await getOrder(id);
         setData(data);
@@ -25,7 +27,6 @@ export default function Orders() {
                 getData(user.uid);
             }
         })
-
 
     }, [])
 
@@ -60,6 +61,49 @@ export default function Orders() {
                                                                     <li>{val?.name} <span>${val?.price}</span></li>
                                                                 </>
                                                             ))}
+                                                            <li className="feedback_box">
+                                                                <button className="btn btn-light" onClick={() => { setFeedbackBtn(val?.orderId) }}>Rate Order</button>
+
+                                                                {feedbackBtn === val?.orderId && (
+                                                                    <>
+                                                                        <div className="feedback_form_box">
+                                                                            <form
+                                                                                className="form-contact contact_form"
+                                                                                method="post"
+                                                                            >
+                                                                                <div className="form-group">
+                                                                                    <label>Give Rateing</label>
+                                                                                    <select
+                                                                                        className="form-control"
+                                                                                        type="Number"
+                                                                                        placeholder="Enter your name"
+                                                                                    >
+                                                                                        <option>Select Star</option>
+                                                                                        <option value="1">1</option>
+                                                                                        <option value="2">2</option>
+                                                                                        <option value="3">3</option>
+                                                                                        <option value="4">4</option>
+                                                                                        <option value="5">5</option>
+                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div className="form-group">
+                                                                                    <label>Give Feedback</label>
+                                                                                    <textarea
+                                                                                        className="form-control"
+                                                                                        type="text"
+                                                                                        placeholder="Enter your name"
+                                                                                    ></textarea>
+                                                                                </div>
+                                                                                <div className="form-group mt-3">
+                                                                                    <button type="submit" className="button button-contactForm btn_4">Submit</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </>
+                                                                )}
+
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
