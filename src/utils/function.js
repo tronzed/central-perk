@@ -277,4 +277,23 @@ export const getOrder = async (userId) => {
 
 // get orders end
 
+export const addFeedback = async (data) => {
 
+    try {
+
+        const res = await fetch(`${firebaseURL}/feedback.json`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (!res.ok) {
+            throw new Error('Unable to add feedback');
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}

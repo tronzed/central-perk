@@ -36,7 +36,7 @@ export default function Cart() {
 
         const time = new Date().toLocaleTimeString('en-IN');
 
-        const finalData = { userId: userBox.uid, userName: userBox.displayName, orderId: orderId, cartData, orderType, total: cartData?.total, date, time }
+        const finalData = { userId: userBox.uid, userName: userBox.displayName, orderId: orderId, cartData, orderType, total: cartData?.total, date, time, feedback: true }
 
         placeOrder(orderId, userBox.uid, finalData);
         nav('/checkout')

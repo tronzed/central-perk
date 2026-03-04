@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getOrder } from "../utils/function";
+import { getOrder, addFeedback } from "../utils/function";
 
 import { auth } from "../firebase";
 
@@ -15,10 +15,26 @@ export default function Orders() {
 
     const [feedbackBtn, setFeedbackBtn] = useState(null);
 
+    const [star, setStar] = useState();
+    const [review, setReview] = useState();
+    const [orderData, setOrderData] = useState();
+
+
     const getData = async (id) => {
         const data = await getOrder(id);
         setData(data);
     }
+
+
+    const addData = (e) => {
+        e.preventDefault();
+        const data = { star, review, orderData }
+        addFeedback(data);
+
+        setStar('');
+        setReview('');
+    }
+
 
     useEffect(() => {
 
@@ -30,13 +46,11 @@ export default function Orders() {
 
     }, [])
 
-
     return (
         <>
             <Header />
             <>
                 <>
-
                     <section className="contact-section section_padding">
                         <div className="container">
                             {data && (
@@ -62,7 +76,12 @@ export default function Orders() {
                                                                 </>
                                                             ))}
                                                             <li className="feedback_box">
-                                                                <button className="btn btn-light" onClick={() => { setFeedbackBtn(val?.orderId) }}>Rate Order</button>
+
+                                                                {/* {val.feedback === true && ( */}
+                                                                    <>
+                                                                        <button className="btn btn-light" onClick={() => { setFeedbackBtn(val?.orderId); setOrderData({ orderId: val.orderId, orderType: val.orderType }) }}>Rate Order</button>
+                                                                    </>
+                                                                {/* )} */}
 
                                                                 {feedbackBtn === val?.orderId && (
                                                                     <>
@@ -70,6 +89,7 @@ export default function Orders() {
                                                                             <form
                                                                                 className="form-contact contact_form"
                                                                                 method="post"
+                                                                                onSubmit={addData}
                                                                             >
                                                                                 <div className="form-group">
                                                                                     <label>Give Rateing</label>
@@ -77,6 +97,8 @@ export default function Orders() {
                                                                                         className="form-control"
                                                                                         type="Number"
                                                                                         placeholder="Enter your name"
+                                                                                        value={star}
+                                                                                        onChange={(e) => { setStar(e.target.value) }}
                                                                                     >
                                                                                         <option>Select Star</option>
                                                                                         <option value="1">1</option>
@@ -93,6 +115,8 @@ export default function Orders() {
                                                                                         className="form-control"
                                                                                         type="text"
                                                                                         placeholder="Enter your name"
+                                                                                        value={review}
+                                                                                        onChange={(e) => { setReview(e.target.value) }}
                                                                                     ></textarea>
                                                                                 </div>
                                                                                 <div className="form-group mt-3">
