@@ -25,11 +25,11 @@ export default function Orders() {
         setData(data);
     }
 
-
     const addData = (e) => {
         e.preventDefault();
-        const data = { star, review, orderData }
-        addFeedback(data);
+        const data2 = { star, review, orderData }
+
+        addFeedback(data2);
 
         setStar('');
         setReview('');
@@ -48,6 +48,9 @@ export default function Orders() {
 
     return (
         <>
+
+            {console.log(data,'--boombam--')}
+
             <Header />
             <>
                 <>

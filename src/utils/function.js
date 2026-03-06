@@ -262,8 +262,13 @@ export const getOrder = async (userId) => {
         const filterData = [];
 
         for (const item of data2) {
-            const arrVal = Object.values(item)[0];
-            filterData.push(arrVal)
+
+            const arrVal = Object.entries(item).map(([key, value]) => ({
+                innerId: key,
+                ...value
+            }))
+
+            filterData.push(...arrVal)
         }
 
         return filterData
@@ -277,6 +282,8 @@ export const getOrder = async (userId) => {
 
 // get orders end
 
+
+// Add feedback start
 export const addFeedback = async (data) => {
 
     try {
@@ -287,6 +294,7 @@ export const addFeedback = async (data) => {
             body: JSON.stringify(data)
         });
 
+
         if (!res.ok) {
             throw new Error('Unable to add feedback');
         }
@@ -295,5 +303,5 @@ export const addFeedback = async (data) => {
         console.log(error);
     }
 
-
 }
+// End feedback start
