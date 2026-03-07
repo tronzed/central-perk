@@ -284,7 +284,7 @@ export const getOrder = async (userId) => {
 
 
 // Add feedback start
-export const addFeedback = async (data) => {
+export const addFeedback = async (orderBox,data) => {
 
     try {
 
@@ -294,6 +294,11 @@ export const addFeedback = async (data) => {
             body: JSON.stringify(data)
         });
 
+        const res2 = await fetch(`${firebaseURL}/order/${orderBox.userId}/${orderBox.orderId}/${orderBox.innerId}.json`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({feedback:false})
+        });
 
         if (!res.ok) {
             throw new Error('Unable to add feedback');

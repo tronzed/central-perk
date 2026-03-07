@@ -25,14 +25,20 @@ export default function Orders() {
         setData(data);
     }
 
-    const addData = (e) => {
+    const addData = async (e, valbox) => {
         e.preventDefault();
         const data2 = { star, review, orderData }
 
-        addFeedback(data2);
+        await addFeedback(valbox, data2);
 
         setStar('');
         setReview('');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                getData(user.uid);
+            }
+        })
     }
 
 
@@ -49,7 +55,6 @@ export default function Orders() {
     return (
         <>
 
-            {console.log(data,'--boombam--')}
 
             <Header />
             <>
@@ -62,7 +67,6 @@ export default function Orders() {
                                     {data?.map((val, key) => {
 
                                         return (
-
                                             <>
                                                 <div className="order_info_cover">
                                                     <div className="order_info_box">
@@ -80,53 +84,54 @@ export default function Orders() {
                                                             ))}
                                                             <li className="feedback_box">
 
-                                                                {/* {val.feedback === true && ( */}
+                                                                {val.feedback === true && (
                                                                     <>
                                                                         <button className="btn btn-light" onClick={() => { setFeedbackBtn(val?.orderId); setOrderData({ orderId: val.orderId, orderType: val.orderType }) }}>Rate Order</button>
-                                                                    </>
-                                                                {/* )} */}
 
-                                                                {feedbackBtn === val?.orderId && (
-                                                                    <>
-                                                                        <div className="feedback_form_box">
-                                                                            <form
-                                                                                className="form-contact contact_form"
-                                                                                method="post"
-                                                                                onSubmit={addData}
-                                                                            >
-                                                                                <div className="form-group">
-                                                                                    <label>Give Rateing</label>
-                                                                                    <select
-                                                                                        className="form-control"
-                                                                                        type="Number"
-                                                                                        placeholder="Enter your name"
-                                                                                        value={star}
-                                                                                        onChange={(e) => { setStar(e.target.value) }}
+
+                                                                        {feedbackBtn === val?.orderId && (
+                                                                            <>
+                                                                                <div className="feedback_form_box">
+                                                                                    <form
+                                                                                        className="form-contact contact_form"
+                                                                                        method="post"
+                                                                                        onSubmit={(e) => { addData(e, val) }}
                                                                                     >
-                                                                                        <option>Select Star</option>
-                                                                                        <option value="1">1</option>
-                                                                                        <option value="2">2</option>
-                                                                                        <option value="3">3</option>
-                                                                                        <option value="4">4</option>
-                                                                                        <option value="5">5</option>
-                                                                                    </select>
-                                                                                </div>
+                                                                                        <div className="form-group">
+                                                                                            <label>Give Rateing</label>
+                                                                                            <select
+                                                                                                className="form-control"
+                                                                                                type="Number"
+                                                                                                placeholder="Enter your name"
+                                                                                                value={star}
+                                                                                                onChange={(e) => { setStar(e.target.value) }}
+                                                                                            >
+                                                                                                <option>Select Star</option>
+                                                                                                <option value="1">1</option>
+                                                                                                <option value="2">2</option>
+                                                                                                <option value="3">3</option>
+                                                                                                <option value="4">4</option>
+                                                                                                <option value="5">5</option>
+                                                                                            </select>
+                                                                                        </div>
 
-                                                                                <div className="form-group">
-                                                                                    <label>Give Feedback</label>
-                                                                                    <textarea
-                                                                                        className="form-control"
-                                                                                        type="text"
-                                                                                        placeholder="Enter your name"
-                                                                                        value={review}
-                                                                                        onChange={(e) => { setReview(e.target.value) }}
-                                                                                    ></textarea>
+                                                                                        <div className="form-group">
+                                                                                            <label>Give Feedback</label>
+                                                                                            <textarea
+                                                                                                className="form-control"
+                                                                                                type="text"
+                                                                                                placeholder="Enter your name"
+                                                                                                value={review}
+                                                                                                onChange={(e) => { setReview(e.target.value) }}
+                                                                                            ></textarea>
+                                                                                        </div>
+                                                                                        <div className="form-group mt-3">
+                                                                                            <button type="submit" className="button button-contactForm btn_4">Submit</button>
+                                                                                        </div>
+                                                                                    </form>
                                                                                 </div>
-                                                                                <div className="form-group mt-3">
-                                                                                    <button type="submit" className="button button-contactForm btn_4">Submit</button>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
+                                                                            </>
+                                                                        )}
                                                                     </>
                                                                 )}
 
