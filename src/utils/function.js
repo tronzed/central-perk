@@ -288,7 +288,7 @@ export const addFeedback = async (orderBox,data) => {
 
     try {
 
-        const res = await fetch(`${firebaseURL}/feedback/${orderBox.userId}/${orderBox.orderId}.json`, {
+        const res = await fetch(`${firebaseURL}/feedback.json`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
