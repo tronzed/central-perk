@@ -214,6 +214,8 @@ body .container {
 
 .order_info_cover .order_info_box .order_item_list li.feedback_box {
     display: block;
+    padding: 0;
+    margin-top: -1px;
 }
 .feedback_form_box {
     padding: 30px;
