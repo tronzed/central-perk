@@ -86,7 +86,7 @@ export default function Orders() {
 
                                                                 {val.feedback === true && (
                                                                     <>
-                                                                        <button className="btn btn-light" onClick={() => { setFeedbackBtn(val?.orderId); setOrderData({ orderId: val.orderId, orderType: val.orderType }) }}>Rate Order</button>
+                                                                        <button className="btn btn-light" onClick={() => { setFeedbackBtn(val?.orderId); setOrderData({ orderId: val.orderId, userName: val.userName }) }}>Rate Order</button>
 
 
                                                                         {feedbackBtn === val?.orderId && (
