@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getOrder, addFeedback } from "../utils/function";
+import { getOrder, addFeedback, createDataId } from "../utils/function";
 
 import { auth } from "../firebase";
 
@@ -25,9 +25,18 @@ export default function Orders() {
         setData(data);
     }
 
+
+
     const addData = async (e, valbox) => {
         e.preventDefault();
-        const data2 = { star, review, orderData }
+
+        const feedbackId = createDataId('feedback');
+
+        const date = new Date().toLocaleDateString('en-IN');
+
+        const time = new Date().toLocaleTimeString('en-IN');
+
+        const data2 = { feedbackId, star, review, orderData, date, time }
 
         await addFeedback(valbox, data2);
 
