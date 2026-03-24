@@ -28,7 +28,7 @@ export default function Login() {
             <div className="auth_form_cover">
                 <div className="container">
                     <div className="auth_form_box">
-                        <h3>Login</h3>
+                        <h3>Login boya</h3>
                         <form onSubmit={(e) => { handleSubmit(e) }}>
                             <div className="form-group">
                                 <input
