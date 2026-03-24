@@ -7,6 +7,7 @@ import { getOrder, addFeedback, createDataId } from "../utils/function";
 import { auth } from "../firebase";
 
 import { onAuthStateChanged } from "firebase/auth";
+import Loader from "../components/Loader";
 
 export default function Orders() {
 
@@ -14,6 +15,8 @@ export default function Orders() {
     const [data, setData] = useState();
 
     const [feedbackBtn, setFeedbackBtn] = useState(null);
+
+    const [loader, setLoader] = useState(true);
 
     const [star, setStar] = useState();
     const [review, setReview] = useState();
@@ -23,6 +26,7 @@ export default function Orders() {
     const getData = async (id) => {
         const data = await getOrder(id);
         setData(data);
+        setLoader(false);
     }
 
 
@@ -66,6 +70,9 @@ export default function Orders() {
 
 
             <Header />
+
+            <Loader status={loader}/>
+
             <>
                 <>
                     <section className="contact-section section_padding">

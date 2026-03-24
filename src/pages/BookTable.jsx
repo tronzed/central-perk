@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import { book_table, createDataId } from '../utils/function'
+import Loader from "../components/Loader";
 
 export default function BookTable() {
 
@@ -10,6 +11,8 @@ export default function BookTable() {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [phone, setPhone] = useState();
+    const [loader, setLoader] = useState(false);
+
 
     const [peopleNo, setPeopleNo] = useState();
     const [date, setDate] = useState();
@@ -17,14 +20,23 @@ export default function BookTable() {
     const [tableNo, setTableNo] = useState();
 
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
 
         e.preventDefault();
+        setLoader(true);
+        try {
+            const id = createDataId('tbl')
+            const data = { idBox: id, name: name, email: email, phone: phone, peopleNo: peopleNo, date: date, time: time, tableNo: tableNo }
+            
+            await book_table(data);
 
-        const id = createDataId('tbl')
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoader(false);
+        }
 
-        const data = { idBox:id, name: name, email: email, phone: phone, peopleNo: peopleNo, date: date, time: time, tableNo: tableNo }
-        book_table(data);
+
 
         // console.log(data);
 
@@ -33,6 +45,8 @@ export default function BookTable() {
     return (
         <>
             <Header />
+
+            <Loader status={loader} />
 
             <>
                 <>

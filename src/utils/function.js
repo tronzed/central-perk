@@ -35,15 +35,29 @@ export const addCart = (userId, value) => {
 
 
 // Book table start
-export const book_table = (value) => {
-    const data = value;
-    fetch(firebaseURL + 'tableBook/.json', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    }).then(() => {
-        console.log('table add')
-    });
+export const book_table = async (value) => {
+
+    try {
+
+        const data = value;
+        const res = await fetch(firebaseURL + 'tableBook/.json', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        }).then(() => {
+            console.log('table add')
+        });
+
+
+        if(!res.ok){
+            throw new Error('Failed to add table booking');
+        }
+
+
+    } catch (error) {
+        console.error(error)
+    }
+
 }
 // Book table end
 
@@ -284,7 +298,7 @@ export const getOrder = async (userId) => {
 
 
 // Add feedback start
-export const addFeedback = async (orderBox,data) => {
+export const addFeedback = async (orderBox, data) => {
 
     try {
 
@@ -297,7 +311,7 @@ export const addFeedback = async (orderBox,data) => {
         const res2 = await fetch(`${firebaseURL}/order/${orderBox.userId}/${orderBox.orderId}/${orderBox.innerId}.json`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({feedback:false})
+            body: JSON.stringify({ feedback: false })
         });
 
         if (!res.ok) {
