@@ -44,15 +44,15 @@ x Breadcrumb
 https://themewagon.github.io/stisla-1/index-0.html
 
 
+__________________
 
 
+add menu products
 
-"id": 1,
-"userName": "Rahul Sharma",
-"foodItem": "Paneer Butter Masala",
-"rating": 5,
-"comment": "Very tasty and fresh. Loved the spices!",
-"orderId": "ORD12345",
-"date": "2026-03-04",
-"deliveryRating": 4,
-"recommend": true
+ add menu item on home
+
+ book table from home
+
+add feedback on home
+
+make footer dynamic 
