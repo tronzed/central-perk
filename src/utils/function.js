@@ -49,7 +49,7 @@ export const book_table = async (value) => {
         });
 
 
-        if(!res.ok){
+        if (!res.ok) {
             throw new Error('Failed to add table booking');
         }
 
@@ -324,3 +324,32 @@ export const addFeedback = async (orderBox, data) => {
 
 }
 // End feedback start
+
+
+// get feedback start
+
+export const getFeedback = async () => {
+
+    try {
+
+
+        const res = await fetch(`${firebaseURL}/feedback.json`);
+
+        if (!res.ok) {
+            throw new Error('Unable to get feedback');
+        }
+
+        const data = Object.values(await res.json());
+
+        // console.log(data,'|====data====|');
+
+        return data;
+
+    } catch (error) {
+        console.error(error)
+        return [];
+    }
+
+}
+
+// get feedback end

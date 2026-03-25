@@ -1,13 +1,40 @@
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
+import { getFeedback } from '../utils/function'
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
 export default function Home() {
+
+
+    const [feedbackBox, setFeedbackBox] = useState();
+
+
+    const getFeedbackData = async () => {
+
+        const data = await getFeedback()
+        setFeedbackBox(data);
+
+    }
+
+
+    useEffect(() => {
+
+        getFeedbackData();
+
+    }, [])
+
+
     return (
         <>
-
             <Header />
-
-
 
             {/*::exclusive_item_part start::*/}
             <section className="exclusive_item_part blog_item_section">
@@ -122,7 +149,7 @@ export default function Home() {
             </section>
             {/* about part end*/}
             {/* intro_video_bg start*/}
-            <section className="intro_video_bg">
+            <section className="intro_video_bg hide_me">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
@@ -774,7 +801,7 @@ export default function Home() {
             </section>
             {/*::chefs_part end::*/}
             {/*::regervation_part start::*/}
-            <section className="regervation_part section_padding">
+            <section className="regervation_part section_padding hide_me">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-5">
@@ -884,8 +911,38 @@ export default function Home() {
                     </div>
                     <div className="row">
                         <div className="col-lg-11">
-                            <div className="client_review_part owl-carousel">
-                                <div className="client_review_single media">
+                            <div className="client_review_part owl-carousels">
+                                <Swiper
+                                    modules={[Navigation, Pagination, Autoplay]}
+                                    spaceBetween={20}
+                                    slidesPerView={1}
+                                    pagination={{ clickable: true }}
+                                    autoplay={{ delay: 3000 }}
+                                >
+                                    {
+                                        feedbackBox?.map((value, key) => (
+                                            <>
+                                                <SwiperSlide>
+                                                    <div className="client_review_single media">
+                                                        <div className="client_img align-self-center">
+                                                            <img src="img/client/client_1.png" alt="" />
+                                                        </div>
+                                                        <div className="client_review_text media-body">
+                                                            <p>
+                                                                {value.review}
+                                                            </p>
+                                                            <h4>
+                                                                {value.orderData.userName}
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </SwiperSlide>
+                                            </>
+                                        ))
+                                    }
+                                </Swiper>
+
+                                <div className="client_review_single media hide_me">
                                     <div className="client_img align-self-center">
                                         <img src="img/client/client_1.png" alt="" />
                                     </div>
@@ -902,40 +959,8 @@ export default function Home() {
                                         </h4>
                                     </div>
                                 </div>
-                                <div className="client_review_single media">
-                                    <div className="client_img align-self-center">
-                                        <img src="img/client/client_1.png " alt="" />
-                                    </div>
-                                    <div className="client_review_text media-body">
-                                        <p>
-                                            Also made from. Give may saying meat there from heaven it
-                                            lights face had is gathered god dea earth light for life may
-                                            itself shall whales made they're blessed whales also made from
-                                            give may saying meat. There from heaven it lights face had
-                                            amazing place
-                                        </p>
-                                        <h4>
-                                            Mosan Cameron, <span>Executive of fedex</span>
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div className="client_review_single media">
-                                    <div className="client_img align-self-center">
-                                        <img src="img/client/client_1.png" alt="" />
-                                    </div>
-                                    <div className="client_review_text media-body">
-                                        <p>
-                                            Also made from. Give may saying meat there from heaven it
-                                            lights face had is gathered god dea earth light for life may
-                                            itself shall whales made they're blessed whales also made from
-                                            give may saying meat. There from heaven it lights face had
-                                            amazing place
-                                        </p>
-                                        <h4>
-                                            Mosan Cameron, <span>Executive of fedex</span>
-                                        </h4>
-                                    </div>
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -1032,6 +1057,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
+
                         <div className="col-sm-6 col-lg-4 d-none d-sm-block d-lg-none">
                             <div className="single_blog_item">
                                 <div className="single_blog_img">
@@ -1058,6 +1084,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>

@@ -39,9 +39,7 @@ export default function About() {
 
         console.log(cartData, 'data');
         console.log(val, 'val');
-
         return data;
-
     }
 
 
@@ -70,8 +68,6 @@ export default function About() {
 
             }
         })
-
-
 
     }, []);
 
