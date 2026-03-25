@@ -49,9 +49,9 @@ __________________
 
 add menu products
 
- add menu item on home
+add menu item on home
 
- book table from home
+book table from home
 
 add feedback on home
 
