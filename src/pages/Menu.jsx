@@ -81,7 +81,7 @@ export default function About() {
 
             <>
 
-                {console.log(cartData, '---cartData---')}
+                {console.log(menuData, '---menuData---')}
 
                 <section className="blog_item_section section_padding">
                     <div className="container">
@@ -104,7 +104,8 @@ export default function About() {
 
                                                 <div className="single_blog_img">
                                                     <img
-                                                        src={`img/food_menu/single_food_${'1'}.png`}
+                                                        // src={`img/food_menu/single_food_${'1'}.png`}
+                                                        src={value?.imgUrl || `img/food_menu/single_food_${'1'}.png`}
                                                         className="mr-3"
                                                         alt="..."
                                                     />

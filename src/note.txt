@@ -47,12 +47,14 @@ https://themewagon.github.io/stisla-1/index-0.html
 __________________
 
 
-add menu products
+x add menu products
 
-add menu item on home
+- add menu item on home
 
-book table from home
+- book table from home
 
-add feedback on home
+x add feedback on home
 
-make footer dynamic 
+x make footer dynamic 
+
+- make menu item Popular 

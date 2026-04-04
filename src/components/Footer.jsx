@@ -4,7 +4,7 @@ export default function Footer() {
             {/* footer part start*/}
             <footer className="footer-area">
                 <div className="container">
-                    <div className="row">
+                    <div className="row hide_me">
                         <div className="col-xl-3 col-sm-6 col-md-3 col-lg-3">
                             <div className="single-footer-widget footer_1">
                                 <h4>About Us</h4>
@@ -81,16 +81,12 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
-                    <div className="copyright_part_text">
+                    <div className="copyright_part_text_x">
                         <div className="row">
                             <div className="col-lg-8">
                                 <p className="footer-text m-0">
                                     {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                                    Copyright © All rights reserved | This template is made with{" "}
-                                    <i className="ti-heart" aria-hidden="true" /> by{" "}
-                                    <a href="https://colorlib.com" target="_blank">
-                                        Colorlib
-                                    </a>
+                                    Copyright © All rights reserved 
                                     {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
                                 </p>
                             </div>
@@ -104,9 +100,6 @@ export default function Footer() {
                                     </a>
                                     <a href="#">
                                         <i className="ti-dribbble" />
-                                    </a>
-                                    <a href="#">
-                                        <i className="fab fa-behance" />
                                     </a>
                                 </div>
                             </div>

@@ -55,12 +55,8 @@ export default function Home() {
                                 </div>
                                 <div className="single_blog_text">
                                     <h3>Indian Burger</h3>
-                                    <p>
-                                        Was brean shed moveth day yielding tree yielding day were female
-                                        and{" "}
-                                    </p>
                                     <a href="#" className="btn_3">
-                                        Read More <img src="img/icon/left_2.svg" alt="" />
+                                        Shop <img src="img/icon/left_2.svg" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -72,12 +68,8 @@ export default function Home() {
                                 </div>
                                 <div className="single_blog_text">
                                     <h3>Cremy Noodles</h3>
-                                    <p>
-                                        Was brean shed moveth day yielding tree yielding day were female
-                                        and{" "}
-                                    </p>
                                     <a href="#" className="btn_3">
-                                        Read More <img src="img/icon/left_2.svg" alt="" />
+                                        Shop <img src="img/icon/left_2.svg" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -89,12 +81,8 @@ export default function Home() {
                                 </div>
                                 <div className="single_blog_text">
                                     <h3>Honey Meat</h3>
-                                    <p>
-                                        Was brean shed moveth day yielding tree yielding day were female
-                                        and{" "}
-                                    </p>
                                     <a href="#" className="btn_3">
-                                        Read More <img src="img/icon/left_2.svg" alt="" />
+                                        Shop <img src="img/icon/left_2.svg" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -171,7 +159,7 @@ export default function Home() {
             </section>
             {/* intro_video_bg part start*/}
             {/* food_menu start*/}
-            <section className="food_menu gray_bg">
+            <section className="food_menu gray_bg hide_me">
                 <div className="container">
                     <div className="row justify-content-between">
                         <div className="col-lg-5">
@@ -669,7 +657,7 @@ export default function Home() {
             </section>
             {/* food_menu part end*/}
             {/*::chefs_part start::*/}
-            <section className="chefs_part blog_item_section section_padding">
+            <section className="chefs_part blog_item_section section_padding chefs_part_cover">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-5">
@@ -688,7 +676,7 @@ export default function Home() {
                                 <div className="single_blog_text text-center">
                                     <h3>Adam Billiard</h3>
                                     <p>Chef Master</p>
-                                    <div className="social_icon">
+                                    <div className="social_icon hide_me">
                                         <a href="#">
                                             {" "}
                                             <i className="ti-facebook" />{" "}
@@ -717,7 +705,7 @@ export default function Home() {
                                 <div className="single_blog_text text-center">
                                     <h3>Fred Macyard</h3>
                                     <p>Chef Master</p>
-                                    <div className="social_icon">
+                                    <div className="social_icon hide_me">
                                         <a href="#">
                                             {" "}
                                             <i className="ti-facebook" />{" "}
@@ -746,7 +734,7 @@ export default function Home() {
                                 <div className="single_blog_text text-center">
                                     <h3>Justin Stuard</h3>
                                     <p>Chef Master</p>
-                                    <div className="social_icon">
+                                    <div className="social_icon hide_me">
                                         <a href="#">
                                             {" "}
                                             <i className="ti-facebook" />{" "}
@@ -925,7 +913,7 @@ export default function Home() {
                                                 <SwiperSlide>
                                                     <div className="client_review_single media">
                                                         <div className="client_img align-self-center">
-                                                            <img src="img/client/client_1.png" alt="" />
+                                                            <img src="img/client/client_2.png" alt="" />
                                                         </div>
                                                         <div className="client_review_text media-body">
                                                             <p>

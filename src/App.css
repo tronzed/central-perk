@@ -221,3 +221,15 @@ body .container {
     padding: 30px;
     background-color: #ffffff;
 }
+
+.footer-area {
+    padding-top: 25px;
+}
+
+.chefs_part_cover {
+    background-color: #f0f0f0;
+}
+
+.blog_item_section .single_blog_text h3 {
+    font-size: 20px;
+}

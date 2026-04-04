@@ -34,6 +34,8 @@ export default function Orders() {
     const addData = async (e, valbox) => {
         e.preventDefault();
 
+        setLoader(true);
+
         const feedbackId = createDataId('feedback');
 
         const date = new Date().toLocaleDateString('en-IN');
