@@ -60,7 +60,7 @@ export default function Home() {
                                 <h2>Our Exclusive Items</h2>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div className="row">
 
                         <div className="col-sm-6 col-lg-4 hide_me">
