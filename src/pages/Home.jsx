@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import { getFeedback } from '../utils/function'
+import { getFeedback, getMenuData } from '../utils/function'
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -15,17 +15,31 @@ export default function Home() {
 
 
     const [feedbackBox, setFeedbackBox] = useState();
+    const [featureData, setFeatureData] = useState();
 
 
     const getFeedbackData = async () => {
-
         const data = await getFeedback()
         setFeedbackBox(data);
+    }
+
+
+    const getMenuInfo = async () => {
+
+        const data = await getMenuData();
+
+        const filterData = data.filter(item => item.feature)
+
+        setFeatureData(filterData);
+
+        console.log(filterData);
 
     }
 
 
     useEffect(() => {
+
+        getMenuInfo();
 
         getFeedbackData();
 
@@ -48,33 +62,8 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_blog_item">
-                                <div className="single_blog_img">
-                                    <img src="img/food_item/food_item_1.png" alt="" />
-                                </div>
-                                <div className="single_blog_text">
-                                    <h3>Indian Burger</h3>
-                                    <a href="#" className="btn_3">
-                                        Shop <img src="img/icon/left_2.svg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="single_blog_item">
-                                <div className="single_blog_img">
-                                    <img src="img/food_item/food_item_2.png" alt="" />
-                                </div>
-                                <div className="single_blog_text">
-                                    <h3>Cremy Noodles</h3>
-                                    <a href="#" className="btn_3">
-                                        Shop <img src="img/icon/left_2.svg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
+
+                        <div className="col-sm-6 col-lg-4 hide_me">
                             <div className="single_blog_item">
                                 <div className="single_blog_img">
                                     <img src="img/food_item/food_item_3.png" alt="" />
@@ -87,23 +76,27 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm-6 col-lg-4 d-none d-sm-block d-lg-none">
-                            <div className="single_blog_item">
-                                <div className="single_blog_img">
-                                    <img src="img/food_item/food_item_1.png" alt="" />
+
+                        {featureData.map((value, key) => (
+                            <>
+
+                                <div className="col-sm-6 col-lg-4">
+                                    <div className="single_blog_item">
+                                        <div className="single_blog_img">
+                                            <img src={value?.imgUrl || "img/food_item/food_item_3.png"} alt="" />
+                                        </div>
+                                        <div className="single_blog_text">
+                                            <h3>{value?.name}</h3>
+                                            <a href="#" className="btn_3">
+                                                Shop <img src="img/icon/left_2.svg" alt="" />
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="single_blog_text">
-                                    <h3>Cremy Noodles</h3>
-                                    <p>
-                                        Was brean shed moveth day yielding tree yielding day were female
-                                        and{" "}
-                                    </p>
-                                    <a href="#" className="btn_3">
-                                        Read More <img src="img/icon/left_2.svg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+                            </>
+                        ))}
+
                     </div>
                 </div>
             </section>
