@@ -74,6 +74,8 @@ export default function Cart() {
 
             <Loader status={loader} />
 
+            {console.log(cartData, '----cartData----')}
+
             <>
                 <>
                     <section className="cart-section section_padding">
@@ -106,7 +108,7 @@ export default function Cart() {
                                                                             <img
                                                                                 className="img-fluid me-5 rounded-circle"
                                                                                 alt=""
-                                                                                src="img/food_menu/single_food_1.png"
+                                                                                src={item?.imgUrl || "img/food_menu/single_food_1.png"}
                                                                                 style={{ width: 80, height: 80 }}
                                                                             />
                                                                         </div>

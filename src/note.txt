@@ -49,10 +49,6 @@ __________________
 
 x add menu products
 
-- add menu item on home
-
-- book table from home
-
 x add feedback on home
 
 x make footer dynamic 

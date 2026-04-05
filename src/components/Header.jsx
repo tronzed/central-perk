@@ -100,11 +100,11 @@ export default function Header() {
                                                 Home
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" to="/about">
                                                 About
                                             </Link>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <Link className="nav-link" to="/menu">
                                                 Menu
@@ -156,7 +156,7 @@ export default function Header() {
                                     <div className="menu_btn_box">
                                         <Link to="/book" className="btn_1 d-none d-sm-block">
                                             <i className='ti-pencil-alt'></i>
-                                            Book A Tabel
+                                            Book Tabel
                                         </Link>
                                     </div>
                                 </div>

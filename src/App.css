@@ -233,3 +233,11 @@ body .container {
 .blog_item_section .single_blog_text h3 {
     font-size: 20px;
 }
+
+.cart-section tr th img {
+    object-fit: cover;
+}
+
+.exclusive_item_part .single_blog_text .btn_3 {
+    margin-top: 0;
+}

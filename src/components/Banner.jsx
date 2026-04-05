@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Banner() {
     return (
         <>
@@ -18,19 +20,10 @@ export default function Banner() {
                                     </p>
                                     <div className="banner_btn">
                                         <div className="banner_btn_iner">
-                                            <a href="#" className="btn_2">
+                                            <Link to="/book" className="btn_2">
                                                 Reservation <img src="img/icon/left_1.svg" alt="" />
-                                            </a>
+                                            </Link>
                                         </div>
-                                        <a
-                                            href="https://www.youtube.com/watch?v=pBFQdxA-apI"
-                                            className="popup-youtube video_popup"
-                                        >
-                                            <span>
-                                                <img src="img/icon/play.svg" alt="" />
-                                            </span>{" "}
-                                            Watch our story
-                                        </a>
                                     </div>
                                 </div>
                             </div>
