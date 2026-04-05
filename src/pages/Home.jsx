@@ -63,21 +63,9 @@ export default function Home() {
                     </div> 
                     <div className="row">
 
-                        <div className="col-sm-6 col-lg-4 hide_me">
-                            <div className="single_blog_item">
-                                <div className="single_blog_img">
-                                    <img src="img/food_item/food_item_3.png" alt="" />
-                                </div>
-                                <div className="single_blog_text">
-                                    <h3>Honey Meat</h3>
-                                    <a href="#" className="btn_3">
-                                        Shop <img src="img/icon/left_2.svg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                      
 
-                        {featureData.map((value, key) => (
+                        {featureData?.map((value, key) => (
                             <>
 
                                 <div className="col-sm-6 col-lg-4">
